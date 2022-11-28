@@ -20,12 +20,18 @@ repositories {
 }
 
 dependencies {
+    implementation 'org.springframework.boot:spring-boot-starter-data-jpa'
     implementation 'org.springframework.boot:spring-boot-starter-web'
     compileOnly 'org.projectlombok:lombok'
+    developmentOnly 'org.springframework.boot:spring-boot-devtools'
     annotationProcessor 'org.projectlombok:lombok'
     providedRuntime 'org.springframework.boot:spring-boot-starter-tomcat'
     testImplementation 'org.springframework.boot:spring-boot-starter-test'
 
+    // 마리아DB JDBC드라이버 https://mvnrepository.com/artifact/org.mariadb.jdbc/mariadb-java-client
+    implementation 'org.mariadb.jdbc:mariadb-java-client:2.7.0'
+
+    // 롬복 Test 사용을 위한 dependencies
     testCompileOnly 'org.projectlombok:lombok:'
     testAnnotationProcessor 'org.projectlombok:lombok:'
 }
