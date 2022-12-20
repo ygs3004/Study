@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, user-scalable=no, initial-scale=1.0
+  maximum-scale=1.0, minimum-scale=1.0">
+    <title>quiz</title>
+</head>
+<body>
+<div id="app">
+    <header>
+        <h3>{{message}}</h3>
+    </header>
+    <!-- 실습 #3 전역 컴포넌트 등록을 위한 'todo-footer' 태그 추가 -->
+    <todo-footer></todo-footer>
+    <!-- 실습 #4 지역 컴포넌트 등록을 위한 'todo-list' 태그 추가 -->
+    <todo-list></todo-list>
+</div>
+
+<script src="https://cdn.jsdelivr.net/npm/vue@2.5.2/dist/vue.js"></script>
+<script>
+    // 실습 #1 - 'todo-footer' 컴포넌트 전역 등록
+    Vue.component('todo-footer', {
+        template : '<p>This is another global child component</p>'
+    })
+
+
+    let todoList = {
+        template : '<p>This is another local child component</p>'
+    }
+
+    let app = new Vue({
+        el: '#app',
+        data: {
+            message: 'This is a parent component'
+        },
+
+    // 실습 #2 - 'todo-list' 컴포넌트 지역 등록
+        components : {
+            'todo-list' : todoList
+        }
+    })
+</script>
+
+</body>
+</html>
