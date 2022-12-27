@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Vue Js Expression</title>
+</head>
+<body>
+
+    <div id="app">
+        <!-- {{let a = 10;}} 선언문 사용 불가능 -->
+        <!-- {{if(true){return 100})}} 분기 구문은 사용 불가능 -->
+        {{true ? 100: 0 }} <!-- 삼항 연산자로 상의 가능 -->
+
+        <p>{{message}}</p>
+        <p>{{message + "!!!"}}</p>
+        <p>{{message.split('').reverse().join('')}}</p> <!-- 복잡한 계산은 스크립트에서 -->
+        <p>{{reversedMessage}}</p>
+    </div>
+
+    <!-- Vue CDN -->
+    <script src="https://cdn.jsdelivr.net/npm/vue@2.5.2/dist/vue.js"></script>
+
+    <script>
+        new Vue({
+            el: '#app',
+            data: {
+                message: 'Hello Vue.js!'
+            },
+            computed: {
+                reversedMessage : function () {
+                    return this.message.split('').reverse().join('');
+                }
+            }
+        });
+    </script>
+
+</body>
+</html>

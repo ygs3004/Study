@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Compued vs Methods</title>
+</head>
+<body>
+
+    <div id="app">
+        <p>{{message}}</p>
+        <button v-on:click="reverseMsg">문자열 역순</button>
+    </div>
+
+    <!-- Vue CDN -->
+    <script src="https://cdn.jsdelivr.net/npm/vue@2.5.2/dist/vue.js"></script>
+
+    <script>
+        new Vue({
+            el:'#app',
+            data: {
+                message: 'Hello! Vue.js'
+            },
+            methods: {
+                reverseMsg: function(){
+                    this.message = this.message.split('').reverse().join('');
+                }
+            }
+        })
+    </script>
+
+</body>
+</html>

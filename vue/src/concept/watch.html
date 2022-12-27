@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Compued vs Methods</title>
+</head>
+<body>
+
+    <div id="app">
+        <input v-model="message">
+    </div>
+
+    <!-- Vue CDN -->
+    <script src="https://cdn.jsdelivr.net/npm/vue@2.5.2/dist/vue.js"></script>
+
+    <script>
+        new Vue({
+            el:'#app',
+            data: {
+                message: 'Hello! Vue.js'
+            },
+            watch: {
+                message: function(data){
+                    console.log("message 의 값이 변경되었습니다 : ", data);
+                }
+            }
+        })
+    </script>
+
+</body>
+</html>

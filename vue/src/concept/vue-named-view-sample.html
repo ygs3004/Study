@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+
+    <div id="app">
+        <!-- 라우팅 역영 정의 -->
+        <router-view name="header"></router-view>
+        <!-- name이 없는 경우 라우팅 역영 정의 -->
+        <router-view></router-view>
+        <router-view name="footer"></router-view>
+    </div>
+
+
+    <!-- Vue CDN -->
+    <script src="https://cdn.jsdelivr.net/npm/vue@2.5.2/dist/vue.js"></script>
+    <!-- Vue Router CDN -->
+    <script src="https://unpkg.com/vue-router@3.0.1/dist/vue-router.js"></script>
+
+    <script>
+        let Body = { template : '<div>This is Body</div>' };
+        let Header = { template : '<div>This is Header</div>' };
+        let Footer = { template : '<div>This is Footer</div>' };
+
+        let router = new VueRouter({
+            routes : [
+                {
+                    path : '/',
+
+                    // <router-view>의 name 속성과 컴포넌트를 연결
+                    components : {
+                        default : Body,
+                        header : Header,
+                        footer : Footer
+                    }
+                }
+            ]
+        });
+
+        let app = new Vue({
+            router
+        }).$mount('#app');
+    </script>
+
+</body>
+</html>

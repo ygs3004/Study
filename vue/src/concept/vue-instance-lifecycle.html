@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, user-scalable=no, initial-scale=1.0
+  maximum-scale=1.0, minimum-scale=1.0">
+    <title>Vue Instance Lifecycle</title>
+</head>
+<body>
+<div id="app">
+    {{message}}
+</div>
+
+<script src="https://cdn.jsdelivr.net/npm/vue@2.5.2/dist/vue.js"></script>
+<script>
+    new Vue({
+        el:'#app',
+        data:{
+            message:'Hello Vue.js!'
+        },
+        beforeCreate :function()
+            {console.log('beforeCreate')
+        },
+        created : function(){
+            console.log('created')
+        },
+/*        mounted : () => {
+            console.log("mounted");
+            this.message = 'Hello';
+        } */
+        mounted : function() {
+            console.log("mounted");
+            this.message = 'Hello';
+        },
+        updated : function () {
+            console.log("updated");
+        }
+    })
+
+    // 라이플 사이클 메소드는 화살표 함수 사용 안됨
+    // 화살표 함수가 부모 컨텍스트를 바인딩하기 때문에 this 가 vue 컴포넌트가 아님
+</script>
+</body>
+</html>

@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Vue Router Sample</title>
+</head>
+
+<body>
+    <div id="app">
+        <h1>뷰 라우터 예시</h1>
+        <p>
+            <router-link to="/main">Main 컴포넌트로 이동</router-link>
+            <br>
+            <router-link to="/login">Login 컴포넌트로 이동</router-link>
+        </p>
+        <router-view></router-view>
+    </div>
+
+    <!-- Vue CDN -->
+    <script src="https://cdn.jsdelivr.net/npm/vue@2.5.2/dist/vue.js"></script>
+    <!-- Vue Router CDN -->
+    <script src="https://unpkg.com/vue-router@3.0.1/dist/vue-router.js"></script>
+
+    <script>
+        // 컴포넌트 정의
+        let main = {template:'<div>main</div>'};
+        let login = {template:'<div>login</div>'}
+
+        // URL에 맞춰 표시할 컴포넌트 지정
+        let routes = [
+            { path: '/main', component: main },
+            { path: '/login', component: login }
+        ];
+
+        // 뷰 라우터 정의
+        let router = new VueRouter({
+            mod:'history', // URL 해시값을 없애는 속성
+            routes
+        });
+
+        // vue 인스턴스에 라우터 추가
+        let app = new Vue({
+            router
+        }).$mount("#app")
+    </script>
+
+</body>
+</html>

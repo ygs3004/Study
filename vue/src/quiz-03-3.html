@@ -4,9 +4,49 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, user-scalable=no, initial-scale=1.0
   maximum-scale=1.0, minimum-scale=1.0">
-    <title>Title</title>
+    <title>Vue Components Communication Quiz</title>
 </head>
 <body>
+
+    <div id="app">
+        <child-component v-bind:propsdata="message"></child-component>
+
+        <!-- 할일 3 -->
+        <!-- sibling-component 등록 -->
+        <sibling-component v-bind:propsdata="anotherMessage"></sibling-component>
+    </div>
+
+<script src="https://cdn.jsdelivr.net/npm/vue@2.5.2/dist/vue.js"></script>
+
+<script>
+    /*
+    할 일 #1
+    sibling-component 를 이름으로 하는 새로운 컴포넌트를 아래에 등록
+    options : template, props
+    */
+
+    Vue.component('sibling-component',{
+        props:['propsdata'],
+        template: '<p>{{propsdata}}</p>'
+    })
+
+    Vue.component('child-component', {
+        props : ['propsdata'],
+        template : '<p>{{propsdata}}</p>'
+    })
+
+    let app = new Vue({
+        el : '#app',
+        data : {
+            message : 'Hello Vue! passed from Parent Component',
+
+            // 할 일 #2
+            // sibling-component에 props로 보낼 임의의 데이터
+            anotherMessage : 'Another Message Here'
+        }
+    })
+
+</script>
 
 </body>
 </html>

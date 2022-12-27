@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Vue Template - Directives</title>
+</head>
+<body>
+    <div id="app">
+        <a v-if="flag">날씨가 춥다</a>
+        <ul>
+            <li v-for="system in systems">{{system}}</li>
+        </ul>
+        <p v-show="flag">너무나 춥다</p>
+        <h5 v-bind:id="uid">뷰 입문서</h5>
+        <button v-on:click="popupAlert">경고 창 버튼</button>
+    </div>
+
+    <!-- Vue CDN -->
+    <script src="https://cdn.jsdelivr.net/npm/vue@2.5.2/dist/vue.js"></script>
+
+    <script>
+        new Vue({
+            el: '#app',
+            data: {
+                flag: true,
+                systems: ['android', 'ios', 'window'],
+                uid: 10
+            },
+            methods:{
+                popupAlert: function(){
+                    this.flag = !this.flag;
+                    return alert('경고창 표시')
+                }
+            }
+        })
+    </script>
+
+</body>
+</html>
