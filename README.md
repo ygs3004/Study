@@ -4,5 +4,5 @@
   - ex1(프로젝트 생성) 
   - ex2(JPA)
 
-Do it Vue js 입문
+Do it Vue js 입문 // vue-완벽가이드(udemy 인강)
   - vue
