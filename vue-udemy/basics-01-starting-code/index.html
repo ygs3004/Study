@@ -18,8 +18,11 @@
 </header>
 <section id="user-goal">
     <h2>My Course Goal</h2>
-    <p v-html="outputGoal()"></p>
+    <!-- v-html : html 태그를 바인딩 -->
+    <!--<p v-html="outputGoal()"></p>-->
+    <!-- 일반적인 보간법 : html 태그를 문자열로 출력 -->
     <p>{{ outputGoal() }}</p>
+    <!-- v-bind 를 이용하여 태그의 속성을 바인드 가능 -->
     <p>Learn more <a v-bind:href="vueLink">about Vue</a></p>
 </section>
 </body>
