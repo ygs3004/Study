@@ -10,5 +10,5 @@ const baz = function baz(){
     return 3;
 }
 
-console.log(global.baz());
+console.log(global.baz); // undefined
 

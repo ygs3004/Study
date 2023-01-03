@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+<script>
+    function foo(){
+        const x = 1;
+        const y = 2;
+
+        function bar(){
+            debugger
+            const z = 3;
+
+            // 상위 스코프의 식별자를 참조하지 않음
+            console.log(x);
+        }
+
+        return bar;
+    }
+
+    const bar = foo();
+    bar();
+</script>
+</body>
+</html>

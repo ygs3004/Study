@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8"/>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+    <title>Vue Basics</title>
+    <link
+            href="https://fonts.googleapis.com/css2?family=Jost:wght@400;700&display=swap"
+            rel="stylesheet"
+    />
+    <link rel="stylesheet" href="styles.css"/>
+    <script src="https://unpkg.com/vue@next" defer></script>
+    <script src="app.js" defer></script>
+</head>
+<body>
+<header>
+    <h1>Vue Course Goals</h1>
+</header>
+<section id="user-goal">
+    <h2>My Course Goal</h2>
+    <!-- v-html : html 태그를 바인딩 -->
+    <!--<p v-html="outputGoal()"></p>-->
+    <!-- 일반적인 보간법 : html 태그를 문자열로 출력 -->
+    <p>{{ outputGoal() }}</p>
+    <!-- v-bind 를 이용하여 태그의 속성을 바인드 가능 -->
+    <p>Learn more <a v-bind:href="vueLink">about Vue</a></p>
+</section>
+</body>
+</html>

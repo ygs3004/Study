@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Vue Basics</title>
+    <link
+      href="https://fonts.googleapis.com/css2?family=Jost:wght@400;700&display=swap"
+      rel="stylesheet"
+    />
+    <link rel="stylesheet" href="styles.css" />
+    <script src="https://unpkg.com/vue@next" defer></script>
+    <script src="app.js" defer></script>
+  </head>
+  <body>
+    <header>
+      <h1>Vue Dynamic Styling</h1>
+    </header>
+    <section id="styling">
+      <!-- <div class="demo" :style="{borderColor: boxASelected ? 'red' : '#ccc'}" @click="boxSelected('A')"></div> -->
+      <!-- <div class="demo" :style="{'border-color': boxASelected ? 'red' : '#ccc'}" @click="boxSelected('A')"></div> -->
+
+      <!-- v-bind 이기 때문에 따옴표 안에 자바스크립트 문법 가능 -->
+      <!--:class="boxASelected ? 'demo active' : 'demo'"-->
+      <div
+        class="demo"
+        :class="[{demo: true, active: boxASelected}]"
+        @click="boxSelected('A')"
+      >
+      </div>
+      <div
+        class="demo"
+        :class="boxBClasses"
+        @click="boxSelected('B')"
+      >
+      </div>
+      <div
+        class="demo"
+        :class="{active: boxCSelected}"
+        @click="boxSelected('C')"
+      >
+      </div>
+    </section>
+  </body>
+</html>
