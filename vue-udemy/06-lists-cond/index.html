@@ -24,8 +24,22 @@
       <!-- v-show는 화면에서 단순하게 안보이게 함, 성능이 좋음, 하지만 DOM 에서 필요하지 않은 요소를 남길 여지가 있음-->
       <!-- <p v-show="goals.length===0" >No goals have been added yet - please start adding some!</p> -->
       <ul v-else>
-        <li>Goal</li>
+        <!-- v-for 두번째 인자로 배열은 index, 객체는 key, index 사용가능 -->
+        <li v-for="(goal, index) in goals" :key="goal" @click="removeGoal(index)">
+          <p>{{goal}} - {{index}}</p>
+          <input type="text" @click.stop>
+        </li>
       </ul>
+      <!--
+      <ul>
+        <li v-for="num in 10">{{num}}</li>
+      </ul>
+      -->
+      <!--
+      <ul>
+        <li v-for="(value, key, index) in {name: 'Yoon', age: 20}">{{key}}: {{value}} - {{index}}</li>
+      </ul>
+      -->
     </section>
   </body>
 </html>
