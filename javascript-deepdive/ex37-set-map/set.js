@@ -109,3 +109,40 @@ console.log('================== 요소 삭제 ==================')
 
 // 요소 일괄 삭제
 // Set.prototype.clear
+{
+    const set = new Set([1, 2, 3]);
+
+    set.clear();
+    console.log(set); // Set(0) {}
+}
+console.log('================== 요소 순회 ==================')
+// 요소 순회
+// Set.prototype.forEach
+{
+    const set = new Set([1, 2, 3]);
+    set.forEach((v, v2, set) => console.log(v, v2, set));
+    /* 콜백함수의 첫 번째 두 번째 인수가 같은 값(요소값)을 받음, Array.prototype.forEach와 인터페이스를 통일하기 위함
+        1 1 Set(3) { 1, 2, 3 }
+        2 2 Set(3) { 1, 2, 3 }
+        3 3 Set(3) { 1, 2, 3 }
+    */
+}
+// Set 객체는 이터러블, for of, 스프레드 문법 배ㅔ열 디스트럭처링의 대상이 될 수도 있다.
+{
+    const set = new Set([1, 2, 3]);
+
+    // set 객체는 이터러블
+    console.log(Symbol.iterator in set); // true
+    for (const value of set) {
+        console.log(value); // 1 2 3
+    }
+
+    // 스프레드 문법
+    console.log([...set]); // [ 1, 2, 3 ]
+    
+    // 배열 디스트럭처링 할당
+    const [a, ...rest] = set;
+    console.log(a, rest); // 1 [ 2, 3 ]
+
+}
+
