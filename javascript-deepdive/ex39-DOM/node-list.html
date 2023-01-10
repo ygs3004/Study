@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <!-- querySelectorAll 사용시 반환되는 객체 -->
+    <!-- 상태를 실시간으로 변경하지 않는다. -->
+    <!-- childNodes 프로퍼티가 반환하는 NodeList 객체는 HTMLCollection 객체와 같이 실시간으로 상태 변경을 반영하는 live 객체 -->
+    <title>NodeList</title>
+</head>
+<body>
+  <ul id="fruits">
+    <li>Apple</li>
+    <li>Banana</li>
+  </ul>
+</body>
+  <script>
+    const $fruits = document.getElementById('fruits');
+
+    // childNodes 프로퍼티는 NodeList 객체(Live)를 반환
+    const { childNodes } =$fruits;
+    console.log(childNodes instanceof NodeList); // true
+
+    // $fruits 요소의 자식 노드는 공백 텍스트 노드를 포함 5개
+    console.log(childNodes); // NodeList(5) [text, li, text, li, text]
+
+    for (let i = 0; i < childNodes.length; i++) {
+      // removeChild 메서드는 자식 노드를 DOM에서 삭제
+      // removeChild 가 호출될때마다 실시간 변경 -> 1, 3, 5번째 요소만 삭제됨
+      $fruits.removeChild(childNodes[i]);
+    }
+
+    console.log(childNodes); // NodeList(2)
+
+    // 이러한 문제를 해결하기 위해 HTMLCollection, NodeList 는 배열로 변환하는것이 바람직 => 고차 배열 함수도 사용가능
+    // Array.from, 스프레드 문법 사용
+    [...childNodes].forEach(childNode => {
+      $fruits.removeChild(childNode);
+    })
+
+    console.log(childNodes);
+  </script>
+</html>

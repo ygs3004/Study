@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+</head>
+<body>
+    <ul id="fruits">
+        <li id="apple">Apple</li>
+        <li id="banana">Banana</li>
+        <li id="orange">Orange</li>
+    </ul>
+    <ul>
+        <li>HTML</li>
+    </ul>
+    <script>
+        // 태그 이름이 li 인 요소 모두 탐색하여 반환
+        // HTMLCollection 객체에 담겨 반환
+        // HTMLCollection 객체는 유사 배열 객체이면서 이터러블이다.
+
+        const $elems = document.getElementsByTagName('li');
+        console.log($elems);
+
+        [...$elems].forEach(elem => {elem.style.color = 'red';})
+
+        // * 를 이용해 모든 문서의 요소 취득 가능
+        console.log(document.getElementsByTagName('*'));
+
+        // Document.prototype.getElementsByTagName
+        // DOM 전체 요소에서 태그 이름이 li인 요소 노드를 모두 탐색하여 반환
+        const $listFromDocument = document.getElementsByTagName('li');
+        console.log($listFromDocument);
+
+        // Element.prototype.getElementsByTagName
+        // ul#fruits 요소의 자손 노드중 탐색
+        const $fruits = document.getElementById('fruits');
+        const $listFromFruits = $fruits.getElementsByTagName('li');
+        console.log($listFromFruits);
+    </script>
+</body>
+</html>

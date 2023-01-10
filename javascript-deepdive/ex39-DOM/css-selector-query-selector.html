@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+  <style>
+    /* 전체 선택자 모든 요소를 선택 */
+    *{...}
+
+    /* 태그 선태자: p 태그 요소를 모두 선택 */
+    p{...}
+
+    /* id 선택자: id 값이 'foo' 인 요소를 모두 선택 */
+    #foo{...}
+
+    /* class 선택자: class 값이 'foo'인 요소를 모두 선택 */
+    .foo{...}
+
+    /* 어트리뷰트 선택자: input  요소 중 type 어트리뷰트가 text인 요소를 모두 선택 */
+    input[type=text]{...}
+
+    /* 후손 선택자: div 요소의 후손 요소 중 p 요소를 모두 선택 */
+    div p{...}
+
+    /* 자식 선택자: div 요소의 자식 요소 중 p 요소를 모두 선택 */
+    div > p{...}
+
+    /* 인접 형제 선택자: p 요소의 형제 요소 중에 p 요소 바로 뒤에 위치하는 ul 요소를 선택 */
+    p + ul {...}
+
+    /* 일반 형제 선택자: p 요소의 형제 요소 중에 p 요소 뒤에 위치하는 ul 요소를 모두 선택 */
+    p ~ ul {...}
+
+    /* 가상 class 선택자: hover 상태인 a 요소를 모두 선택 */
+    a:hover {...}
+
+    /* 가상 요소 선택자: p 요소의 콘텐츠의 앞에 위치하는 공간을 선택
+       일반적으로 content 프로퍼티와 함께 사용된다. */
+    p::before{...}
+  </style>
+</head>
+<body>
+    <ul>
+        <li class="apple">Apple</li>
+        <li class="banana">Banana</li>
+        <li class="orange">Orange</li>
+    </ul>
+    <script>
+        // Element/Document.prototype.querySelectorAll(css 선택자) => 만족시키는 모드 요소 노드를 NodeList 객체로 반환
+        // NodeList 객체는 유사배열, 이터러블
+        // 만족 시키는 노드가 없는경우 빈 NodeList 객체 반환
+        // css 선택자가 문법에 맞지 않는 경우 DOMException 에러 발생
+        const $elems = document.querySelectorAll('ul>li');
+        console.log($elems);
+        $elems.forEach(elem => { elem.style.color = 'red' });
+
+        // Element/Document.prototype.querySelector(css 선택자) => 인수로 css 선택자를 만족시키는 하나의 요소 노드 반환
+        // class 어트리뷰타 값이 'banana'인 첫번째 요소 노드 탐색 반환
+        const $elem = document.querySelector('.banana');
+        $elem.style.color = 'yellow';
+
+        // 모든 문서 요소 취득 '*' 이용
+        const $all = document.querySelectorAll('*');
+        console.log($all);
+    </script>
+</body>
+</html>

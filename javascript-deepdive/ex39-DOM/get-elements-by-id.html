@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+</head>
+<body>
+  <ul>
+    <!-- HTML내에서 id는 단하나여야 하지만 중복되어도 에러 발생 x -->
+    <li id="banana">Apple</li>
+    <li id="banana">Banana</li>
+    <li id="banana">Orange</li>
+  </ul>
+  <div id="foo"></div>
+  <script>
+    // getElementById 메서드는 단 하나의 첫번째 요소를 반환
+    const $elem = document.getElementById('banana');
+    const $elem2 = document.getElementById('grape');
+
+    // 첫번재 요소만 변함
+    $elem.style.color='red';
+    // 없는 요소는 null 이 반환
+    // $elem2.style.color='red'; // Uncaught TypeError: Cannot read properties of null (reading 'style')
+
+    // HTML 요소에 id 부여시 id 값과 동일한 전역변수가 암묵적 선언되고 노드 객체가 할당
+    console.log(foo === document.getElementById('foo')); // true
+
+    // 암묵적 전역으로 생성된 전역 프로퍼티는 삭제되지만 전역 변수는 삭제되지 않는다.
+    delete foo;
+    console.log(foo); // <div id="foo"></div>
+
+    // 아이디값과 동일한 전역변수가 선언되어 있으면 노드객체가 재할당되지 않는다.
+    // let foo = 1;
+    // console.log(foo); // 1
+  </script>
+</body>
+</html>

@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <link rel="styleshee" href="style.css">
+    <script>
+        /*
+        * DOM API 를 이용해 id 가 apple 인 요소 취득
+        * 하지만 HTML 요소가 파싱되지 않았기 때문에 취득 불가
+        * */
+        const $apple = document.getElementById('apple');
+
+        // id가 'apple'인 요소 의 프로퍼티 변경
+        // 아직 DOM 에 id가 'apple' 인 요소가 포함되어 있지 않기 때문에 에러 발생
+        $apple.style.color = 'red'; // Uncaught TypeError: Cannot read properties of null (reading 'style')
+    </script>
+</head>
+<body>
+    <ul>
+        <li id="apple">Apple</li>
+        <li id="banana">Banana</li>
+        <li id="orange">Orange</li>
+    </ul>
+</body>
+</html>

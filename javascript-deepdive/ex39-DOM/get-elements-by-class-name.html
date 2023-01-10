@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+</head>
+<body>
+  <ul id="fruits">
+    <li class="fruit apple">Apple</li>
+    <li class="fruit banana">Banana</li>
+    <li class="fruit orange">Orange</li>
+  </ul>
+  <script>
+    // class 값이 'fruit' 인 요소를 HTMLCollection 객체에 반환
+    const $elems = document.getElementsByClassName('fruit');
+
+    // 취득한 모든 요소 color 변경
+    [...$elems].forEach(elem => {elem.style.color = 'red';});
+
+    // class 값이 fruit apple인 요소 객체
+    const $apples = document.getElementsByClassName('fruit apple');
+
+    // 취득한 모든 요소 color 변경
+    [...$apples].forEach(elem => {elem.style.color = 'blue';});
+
+    console.log($elems, $apples)
+
+    // Dom 전체에서 접근
+    // Document.prototype.getElementsByClassName
+    const $bananasFromDocument = document.getElementsByClassName('banana');
+    console.log($bananasFromDocument);
+
+    // 요소 자손 노드 탐색
+    // Element.prototype.getElementsByClassName
+    const $fruits = document.getElementById('fruits');
+    const $bananasFromFruits = $fruits.getElementsByClassName('banana');
+
+    console.log($bananasFromFruits);
+  </script>
+</body>
+</html>

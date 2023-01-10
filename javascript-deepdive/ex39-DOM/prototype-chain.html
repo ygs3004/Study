@@ -1,0 +1,24 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+</head>
+<body>
+  <input type="text">
+  <script>
+    // input 요소 노드 객체를 선택
+    const $input = document.querySelector('input');
+
+    // 프로토타입 체인
+    // 모두 True,
+    console.log(
+            Object.getPrototypeOf($input) === HTMLInputElement.prototype,
+            Object.getPrototypeOf(HTMLInputElement.prototype) === HTMLElement.prototype,
+            Object.getPrototypeOf(HTMLElement.prototype) === Element.prototype,
+            Object.getPrototypeOf(Element.prototype) === Node.prototype,
+            Object.getPrototypeOf(Node.prototype) === EventTarget.prototype,
+            Object.getPrototypeOf(EventTarget.prototype) === Object.prototype
+    );
+  </script>
+</body>
+</html>

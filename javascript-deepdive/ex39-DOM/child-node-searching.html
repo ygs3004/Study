@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+</head>
+<body>
+  <ul id="fruits">
+    <li class="apple">Apple</li>
+    <li class="banana">Banana</li>
+    <li class="orange">Oranage</li>
+  </ul>
+  <ul id="check">
+  </ul>
+  <script>
+
+    const $check = document.getElementById('check')
+
+    // 자식 노드가 존재하는지 확인
+    // hasChildNodes 메서드는 텍스트 노드를 포함하여 자식 노드의 존재를 확인
+    // 텍스트 노드를 미 포함하기 위해선 children.length 또는 childElementCount 사용
+    console.log($check.hasChildNodes()); // true
+    console.log(!!$check.children.length); // 0 -> false
+    console.log(!!$check.childElementCount); // 0 -> false
+
+    const $fruits = document.getElementById('fruits');
+
+    // 모든 자신 노드 반환
+    // childNodes 프로퍼티 가 반환한 NodeList 에는 텍스트 노드까지 포함
+    console.log($fruits.childNodes); // NodeList(7)
+
+    // 모든 자신 노드 반환
+    // HTMLCollection 에는 요소 노드만 포함
+    console.log($fruits.children); // HTMLCollection(3)
+
+    // 요소의 첫 번째 자식 노드를 반환
+    // firstChild 프로퍼티는 텍스트 노드를 반환할 수도 있다.
+    console.log($fruits.firstChild); // #text ->  "\n    "
+
+    // 요소의 마지막 자식 노드를 반환
+    // lastChild 프로퍼티는 텍스트 노드를 반활할 수도 있다.
+    console.log($fruits.lastChild); //  #text ->  "\n    "
+
+    // 요소의 첫 번째 자식 노드 반환
+    // firstElementChild 프로퍼티는 요소 노드만 반환
+    console.log($fruits.firstElementChild); // <li class="apple">Apple</li>
+
+    // 요소의 마지막 자식 노드 반환
+    // lastElementChild 프로퍼티는 요소 노드만 반환
+    console.log($fruits.lastElementChild); // <li class="orange">Orange</li>
+  </script>
+</body>
+</html>

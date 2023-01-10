@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <!-- getElementsByTagName, getElementsByClassName 메서드가 반환하는 객체 -->
+    <title>HTMLCollections</title>
+    <style>
+    .red{color:red;}
+    .blue{color:blue;}
+    .orange{color:orange;}
+    </style>
+</head>
+<body>
+    <ul id="fruits">
+        <li class="red">Apple</li>
+        <li class="red">Banana</li>
+        <li class="red">Orange</li>
+    </ul>
+    <script>
+        const $elems = document.getElementsByClassName('red');
+        console.log($elems); // HTMLCollection(3) [li.red, li.red, li.red]
+
+        // HTMLCollection 모든 class blue로 변경
+        for (let i = 0; i < $elems.length; i++) {
+            $elems[i].className = 'blue';
+        }
+
+        console.log($elems); // HTMLCollection(1) [li.red]
+        // HTMLCollection 은 실시간으로 변경되기 때문에 첫번재 반복때 $elems[0] 이 변경
+        // 두번째 변경때 $elems[1] => $elems[0], $elems[2] => $elems[1]이 되어 처음 기준 $elems[2]의 값이 변경
+        // 마지막 변경때 $elems[2]는 존재하지 않으므로 변경되지 않음
+
+        // 1. 해결방법 for 문을 역순으로
+        for (let i = $elems.length - 1; i >= 0; i--) {
+            $elems[i].className = 'blue';
+        }
+
+        // 2. while문 사용
+        let i = 0;
+        while($elems.length>1){
+            $elems[i].className = 'blue';
+        }
+
+        // 3. 배열로 변환
+        [...$elems].forEach(elem => elem.className = 'blue');
+    </script>
+
+</body>
+</html>

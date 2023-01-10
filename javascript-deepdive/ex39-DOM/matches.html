@@ -1,0 +1,21 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+</head>
+<body>
+  <ul id="fruits">
+    <li class="apple">Apple</li>
+    <li class="banana">Banana</li>
+    <li class="orange">Orange</li>
+  </ul>
+</body>
+<script>
+  // matches를 이용해 취득 가능한지 확인 가능
+
+  const $apple = document.querySelector('.apple');
+  console.log($apple.matches('#fruits > li.apple')); // true
+  console.log($apple.matches('#fruits > li.banana')); // false
+
+</script>
+</html>
