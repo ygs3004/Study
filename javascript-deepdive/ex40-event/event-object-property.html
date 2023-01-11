@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, user-scalable=no, initial-scale=1.0
+  maximum-scale=1.0, minimum-scale=1.0">
+</head>
+<body>
+  <input type="text">
+  <input type="checkbox">
+  <button>Click me!</button>
+</body>
+  <script>
+
+    // 모든 이벤트 객체에 공통 프로퍼티가 정의되어 있고
+    // FocusEvent, MouseEvent, KeyboardEvent, WheelEvent 같은 하위 인터페이스에 인터페이스 타입에 따른 고유 프로퍼티가 정의
+
+    const $input = document.querySelector('input[type=text]');
+    const $checkbox = document.querySelector('input[type=checkbox]');
+    const $button = document.querySelector('button');
+
+    // load Event => 이벤트 객체 생성
+    window.onload = console.log;
+
+    // Event 객체
+    $checkbox.onchange = console.log;
+
+    // FocusEvent
+    $input.onfocus = console.log;
+
+    // InputEvent
+    $input.oninput = console.log;
+
+    // KeyboardEvent
+    $input.onkeyup = console.log;
+
+    // PointerEvent
+    $button.onclick = console.log;
+  </script>
+</html>

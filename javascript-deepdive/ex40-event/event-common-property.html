@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, user-scalable=no, initial-scale=1.0
+  maximum-scale=1.0, minimum-scale=1.0">
+    <title>공통 프로퍼티</title>
+</head>
+<body>
+  <input type="checkbox">
+  <em class="message">off</em>
+</body>
+  <script>
+    const $checkbox = document.querySelector('input[type=checkbox]');
+    const $msg = document.querySelector('.message');
+
+    // change 이벤트가 발생하면 Event 타입의 이벤트 객체가 생성
+    $checkbox.onchange = e => {
+      console.log(Object.getPrototypeOf(e) === Event.prototype); // true
+
+      // e.target change 이벤트를 발생시킨 DOM 요소 $checkbox 를 가리킨다
+      // e.currentTarget 은 이벤트 핸들러가 바인딩 된 DOM 요소 $checkbox 를 가리킨다.
+      // e.target.checked 는 체크박스 요소의 현재 체크 상태를 나타낸다.
+      $msg.textContent = e.target.checked ? 'on' : 'off';
+    }
+  </script>
+</html>
