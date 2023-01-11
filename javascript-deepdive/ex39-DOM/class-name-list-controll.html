@@ -1,0 +1,72 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>클래스 조작 className, classList</title>
+    <style>
+        .box {
+            width: 100px; height: 100px;
+            background-color: antiquewhite;
+        }
+        .red { color: red; }
+        .blue { color: blue; }
+    </style>
+</head>
+<body>
+    <div class="box red">Hello World</div>
+</body>
+    <script>
+        const $box = document.querySelector('.box');
+
+        // .box 요소의 class 어트리뷰타 값을 취득
+        console.log($box.className); // box red
+
+        // .box 요소의 class 어트리뷰트 값 중에서 'red' 만 'blue'로 변경
+        $box.className = $box.className.replace('red', 'blue');
+
+        // .box 요소의 class 어트리뷰트 정보를 담은 TOMTokenList 객체 취득
+        // classList 가 반환하는 DOMTokenList 객체는
+        // HTMLCollection, NodeList와 같이 객체 상태 변화를 실시간으로 반영하는 살아있는(Live) 객체다.
+        console.log($box.classList);
+        // DOMTokenList(2) ['box', 'blue', value: 'box blue']
+
+        $box.className = $box.className.replace('blue', 'yellow');
+
+        // DOMTokenList 객체 메서드
+        /// add(...className)
+        $box.classList.add('foo');
+        $box.classList.add('bar', 'baz');
+        console.log($box.classList); // DOMTokenList(5) ['box', 'yellow', 'foo', 'bar', 'baz', value: 'box yellow foo bar baz']
+
+        // remove(...className), 인수로 전달한 것과 일치하지 않을경우 에러 없이 무시
+        $box.classList.remove('foo');
+        $box.classList.remove('bar', 'baz');
+        $box.classList.remove('x');
+        console.log($box.classList); // DOMTokenList(2) ['box', 'yellow', value: 'box yellow']
+
+        // item(index): 인수로 전달한 index에 해당하는 클래스 반환
+        console.log($box.classList.item(0)); // box
+        console.log($box.classList.item(1)); // yellow
+
+        // contains(className): class 어트리뷰트에 포함되어있는지 확인
+        console.log($box.classList.contains('box')); // true
+        console.log($box.classList.contains('blue')); // false
+
+        // replace(oldClassName, newClassName): 첫 번째 전달된 문자열 클래스를 두번째로 변경
+        $box.classList.replace('yellow', 'blue');
+        console.log($box.classList); // DOMTokenList(2) ['box', 'blue', value: 'box blue']
+
+        // toggle(className[.force]) 인수로 전달한 문자열과 일치하는 클래스가 존재하면 제거, 없으면 추가
+        $box.classList.toggle('foo');
+        console.log($box.classList); // DOMTokenList(3) ['box', 'blue', 'foo', value: 'box blue foo']
+        $box.classList.toggle('foo');
+        console.log($box.classList); // DOMTokenList(2) ['box', 'blue', value: 'box blue']
+        // 두번째 인수로 true 전달시 강제 추가, false 전달시 강제 제거
+        $box.classList.toggle('foo', true);
+        console.log($box.classList);  // DOMTokenList(3) ['box', 'blue', 'foo', value: 'box blue foo']
+        $box.classList.toggle('foo', false);
+        console.log($box.classList); // DOMTokenList(2) ['box', 'blue', value: 'box blue']
+
+        // 이 외에도 forEach, entries, keys, values, supports 메서드 제공
+    </script>
+</html>

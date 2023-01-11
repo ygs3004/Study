@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>이벤트 핸들러 제거</title>
+</head>
+<body>
+  <button>Click me!</button>
+</body>
+  <script>
+    const $button = document.querySelector('button');
+
+    const handleClick = () => console.log('button click');
+
+    // 이벤트 핸들러 등록
+    $button.addEventListener('click', handleClick);
+
+    // 전달한 인수가 일치하지 않으면 제거되지 않는다.
+    // 이벤트 핸드러를 참조할 수 없으면 제거할 수 없다. $button.addEventListener('click', () => console.log('button click'));
+    $button.removeEventListener('click', handleClick, true); // 실패
+    $button.removeEventListener('click', handleClick); // 성공
+
+    // 기명 함수를 이벤트 핸들러로 등록시 한번만 호출 가능
+    $button.addEventListener('click', function foo() {
+      console.log('foo button click')
+      $button.removeEventListener('click', foo);
+    });
+
+    // 무기명 함수시
+    // arguments.callee: 호출된 함수, 자신을 가리킨다.
+    $button.addEventListener('click', function(){
+      console.log('foo2 button click');
+
+      // 이벤트 핸들러를 제거한다. 따라서 한번만 호출
+      $button.removeEventListener('click', arguments.callee);
+    });
+
+    const handleClick2 = () => console.log('property button click');
+    $button.onclick = handleClick2;
+
+    // removeEventListener로 제거할 수 없다.
+    $button.removeEventListener('click',handleClick2);
+
+    // 이벤트 핸들러 프로퍼티에 null 을 할당
+    $button.onclick = null;
+  </script>
+</html>

@@ -1,0 +1,24 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+</head>
+<body>
+  <div id="foo">Hello</div>
+</body>
+  <script>
+    // Node.prototype.nodeValue : setter, getter 접근자 프로퍼티 존재, 참조와 할당 가능
+    // 텍스트 노드일 경우 값을, 아닌 경우(문서 노드, 요소 노드)의 경우 null 반환
+
+    // 문서 노드의 nodeValue 프로퍼티
+    console.log(document.nodeValue); // null
+    // 요소 노드의  nodeValue 프로퍼티
+    const $foo = document.getElementById('foo');
+    console.log($foo.nodeValue); // null
+
+    // 텍스트 노드의 nodeValue 프로퍼티
+    const $textNode = $foo.firstChild;
+    $textNode.nodeValue = 'World';
+    console.log($textNode.nodeValue); // World
+  </script>
+</html>

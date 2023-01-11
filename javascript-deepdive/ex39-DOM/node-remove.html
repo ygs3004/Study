@@ -1,0 +1,23 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>노드 삭제</title>
+</head>
+<body>
+  <ul id="fruits">
+    <li>Apple</li>
+    <li>Banana</li>
+  </ul>
+</body>
+  <script>
+    // Node.prototype.removeChild(child)
+    // 인수로 전달한 노드를 DOM 에서 삭제
+    // 인수는 자식노드 이어야만 함
+
+    const $fruits = document.getElementById('fruits');
+
+    // #fruits 요소 노드의 마지막 요소를 DOM 에서 삭제
+    $fruits.removeChild($fruits.lastElementChild);
+  </script>
+</html>

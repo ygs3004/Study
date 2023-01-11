@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>인라인 스타일 조작</title>
+</head>
+<body>
+  <div style="color:red">Hello World</div>
+  <ul class="menu">
+
+  </ul>
+</body>
+  <script>
+    const $div = document.querySelector('div');
+
+    // 인라인 스타일 취득
+    console.log($div.style); // CSSStyleDeclaration {0: 'color', accentColor: '', additiveSymbols: '', alignContent: '', alignItems: '', alignSelf: '', ... }
+
+    // 인라인 스타일 변경
+    $div.style.color = 'blue';
+
+    // 인라인 스타일 추가
+    // 단위(px, em, %)를 반드시 지정해야 한다. 생략시 적용 x
+    $div.style.width = '100px';
+    $div.style.height = '100px';
+    $div.style.backgroundColor = 'yellow'
+    // $div.style['background-color'] = 'yellow';
+  </script>
+</html>

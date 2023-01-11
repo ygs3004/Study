@@ -21,7 +21,38 @@
     const $banana = document.querySelector('.banana');
     console.log($banana.parentNode); // <ul id="fruits">…</ul>
 
+    // 형재 요소 탐색
+    const $fruits = document.getElementById('fruits');
 
+    // #fruits 요소의 첫 번째 자식 노드를 탐색한다.
+    // firstChild 프로퍼티는 요소 노드뿐만 아니라 텍스트 노드를 반환 가능
+    const {firstChild} = $fruits;
+    console.log(firstChild); // #text
+
+    // #fruits 요소의 첫 자식 노드(텍스트 노드)의 다음 형제 노드 탐색
+    // nextSibling 프로퍼티는 요소 노드뿐만 아니라 텍스트 노드를 반환 가능
+    const {nextSibling} = firstChild;
+    console.log(nextSibling); // <li class="apple">Apple</li>
+
+    // li.apple 요소 이전 형제 노드 탐색
+    // previousSibling 프로퍼티는 요소 노드뿐만 아니라 텍스트 노드를 반환 가능
+    const {previousSibling} = nextSibling;
+    console.log(previousSibling); // #text
+
+    // #fruits 요소의 첫 자식 노드 탐색
+    // firstElementChild => 요소 노드만 반환
+    const {firstElementChild}= $fruits
+    console.log(firstElementChild); // <li class="apple">Apple</li>
+
+    // #fruits 요소의 첫 자식 노드 다음 형제 노드 탐색
+    // nextElementSibling => 요소 노드만 반환
+    const {nextElementSibling}= firstElementChild
+    console.log(nextElementSibling); // <li class="banana">Banana</li>
+
+    // li.banana 요소의 이전 형제 노드 탐색
+    // previousElementSibling => 요소 노드만 반환
+    const {previousElementSibling}= nextElementSibling
+    console.log(previousElementSibling); // <li class="apple">Apple</li>
   </script>
 </body>
 </html>

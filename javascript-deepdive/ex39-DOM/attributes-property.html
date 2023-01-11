@@ -1,0 +1,23 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>attributes 프로퍼티</title>
+</head>
+<body>
+  <input id="user" type="text" value="Yoon">
+</body>
+  <script>
+      // 요소 노드의 attributes 프로퍼티는 NamedNodeMap 객체를 반환
+      // attributes 프로퍼티는 getter 만 존재
+
+      const {attributes} = document.getElementById('user');
+      console.log(attributes); // NamedNodeMap {0: id, 1: type, 2: value, id: id, type: type, value: value, length: 3}
+
+      // 어트리뷰트 값 취득
+      console.log(attributes.id.value); //user
+      console.log(attributes.type.value); // text
+      console.log(attributes.value.value); // Yoon
+
+  </script>
+</html>

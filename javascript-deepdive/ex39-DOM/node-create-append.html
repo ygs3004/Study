@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>노드 생성과 추가</title>
+</head>
+<body>
+  <ul id="fruits">
+    <li>Apple</li>
+  </ul>
+</body>
+  <script>
+    const $fruits = document.getElementById('fruits');
+
+    // 1. 요소 노드 생성
+    const $li = document.createElement('li');
+    const $li2 = document.createElement('li');
+    console.log($li2.childNodes); // NodeList[] 생성된 요소 노드는 자식 노드가 없다
+
+    // 2. 텍스트 노드 생성
+    const textNode = document.createTextNode('Banana');
+
+    // 3. 텍스트 노드를 $li 요소 노드의 자식 노드로 추가
+    $li.appendChild(textNode);
+
+    // 4. $li 요소 노드를 #fruits 요소 노드의 마지막 자식 노드로 추가
+    $fruits.appendChild($li);
+  </script>
+</html>

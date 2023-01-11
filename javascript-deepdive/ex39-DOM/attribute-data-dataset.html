@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>data 어트리뷰트</title>
+</head>
+<body>
+  <ul class="users">
+    <li id="1" data-user-id="7621" data-role="admin">Lee</li>
+    <li id="2" data-user-id="9524" data-role="subscriber">Kim</li>
+  </ul>
+</body>
+  <script>
+    // data 어트리뷰틔 값은 HTMLElement.dataset 프로퍼티로 취득
+    // 요소의 모든 data 어트리뷰트 정보를 제공하는 DOMStringMap 객체 반환
+    // DOMStringMap 객체는 data 어트리뷰트의 data- 접두사 다음에 붙인 임의의 이름을 카멜 케이스로 변환한 프로퍼티를 가지고있다.
+
+    const users = [...document.querySelector('.users').children];
+    console.log(users)
+
+    // user-id가 '7621'인 요소 취득
+    const user = users.find(user => user.dataset.userId === '7621');
+    console.log(user.dataset.role); // admin
+
+    // user-id가 '7621'인 요소 노드의 data-role 값을 변경한다.
+    user.dataset.role = 'subscriber';
+    // dataset 프로퍼티는 DOMStringMap 객체를 반환
+    console.log(user.dataset); // DOMStringMap {userId: '7621', role: 'subscriber'}
+  </script>
+</html>

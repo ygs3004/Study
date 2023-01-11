@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>복수의 노드 생성 추가</title>
+</head>
+<body>
+  <ul id="fruits"></ul>
+</body>
+  <script>
+    // 3개의 요소 노드 DOM에 추가
+    const $fruits = document.getElementById('fruits');
+    ['Apple', 'Banana', 'Orange'].forEach(text => {
+      // 1. 요소 노드 생성
+      const $li = document.createElement('li');
+      // 2. 텍스트 노드 생성
+      const textNodes = document.createTextNode(text);
+      // 3. 테스트 노드를 $li 요소 노드의 자식 노드로 추가
+      $li.appendChild(textNodes);
+      // 4. $li 요소 노드를 #fruits 요소 노드의 마지막 자식 노드로 추가
+      $fruits.appendChild($li);
+    });
+    // 3개의 요소 노드를 DOM 에 3번 추가 => 리플로우, 리페인트가 3번 실행
+
+    // DOM에 한번에 추가하기
+    const $constainer = document.createElement('div');
+    ['Apple', 'Banana', 'Orange'].forEach(text => {
+      // 1. 요소 노드 생성
+      const $li = document.createElement('li');
+      // 2. 텍스트 노드 생성
+      const textNodes = document.createTextNode(text);
+      // 3. 테스트 노드를 $li 요소 노드의 자식 노드로 추가
+      $li.appendChild(textNodes);
+      // 4. $li 요소 노드를 #fruits 요소 노드의 마지막 자식 노드로 추가
+      $constainer.appendChild($li);
+    });
+    $fruits.appendChild($constainer);
+    // DOM 을 한번만 변경,
+    // 불필요한 <div> 요소가 추가 되는 문제점 발생
+
+    // Document.prototype.DocumentFragment
+    // 일종의 임시 DOM을 구성하고, DOM 에 추가될시 자신은 제거되고 자식노드만 추가
+    // Document.prototype.createDocumentFragment: DocumentFragment 노드를 반환
+    const $fragment = document.createDocumentFragment();
+    ['Apple', 'Banana', 'Orange'].forEach(text => {
+        // 1. 요소 노드 생성
+        const $li = document.createElement('li');
+        // 2. 텍스트 노드 생성
+        const textNodes = document.createTextNode(text);
+        // 3. 테스트 노드를 $li 요소 노드의 자식 노드로 추가
+        $li.appendChild(textNodes);
+        // 4. $li 요소 노드를 #fruits 요소 노드의 마지막 자식 노드로 추가
+        $fragment.appendChild($li);
+    });
+    $fruits.appendChild($fragment); // 리플로우와 리페인트 한번만 실행
+  </script>
+</html>

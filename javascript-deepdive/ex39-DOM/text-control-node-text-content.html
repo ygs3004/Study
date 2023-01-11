@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Node.prototype.textContent</title>
+</head>
+<body>
+    <div id="foo">Hello <span>World!</span></div>
+    <div id="hello">Hello</div>
+</body>
+  <script>
+      // #foo 요소 노드의 텍스트를 모두 취득한다. 이때 HTML 마크업은 무시
+      console.log(document.getElementById('foo').textContent); // Hello World
+
+      // nodeValue의 경우 텍스트 노드가 아닌 노드의 경우 null 을 반환하므로 복잡해짐
+      console.log(document.getElementById('foo').nodeValue); // null
+
+      console.log(document.getElementById('foo').firstChild.nodeValue); // Hello
+      console.log(document.getElementById('foo').lastChild); // <span>World!<span>World!</span></span>
+      console.log(document.getElementById('foo').lastChild.firstChild.nodeValue); // World
+
+      // 자식 요소 노드가 없고 텍스트만 존재한다면
+      // firstChild.nodeValue === firstChild.textContent
+      const $hello = document.getElementById('hello');
+      console.log($hello.textContent === $hello.firstChild.nodeValue);
+
+      // textContent 를 이용해 문자열 할당 가능
+      // HTML 마크업이 파싱되지 않음
+      $hello.textContent = 'Hi <span>There!</span>' // 문자열로 변경
+
+      // innerText 의 경우 textContent와 유사하지만 CSS를 고려하므로 textContent 보다 느림
+      // 예를 들어 visiblity:hidden 이라면 텍스트 노드를 반환하지 않는다.
+
+  </script>
+</html>

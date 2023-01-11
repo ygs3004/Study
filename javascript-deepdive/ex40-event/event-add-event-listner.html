@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>addEventListner 메서드 방식</title>
+</head>
+<body>
+  <button>Click me!</button>
+  <script>
+    // EventTarget.addEventListner('eventType', functionName [, useCapture]);
+    // EventTarget: 이벤트 타깃
+    // eventType: 이벤트 타입
+    // functionName: 이벤트 핸들러
+    // useCapture: capture 여부(true-> capturing, false-> bubbling)
+
+    const $button = document.querySelector('button');
+
+    $button.onclick = function(){
+      console.log('[이벤트 핸들러 프로퍼티 방식]button click')
+    }
+
+    $button.addEventListener('click', function() {
+      console.log('[addEventListner 메서드 방식]button click2')
+    });
+
+    // addEventListner 사용시 여러개의 이벤트 등록  가능, 순서대로 호출
+    $button.addEventListener('click', function() {
+      console.log('[addEventListner 메서드 방식]button click3')
+    });
+
+    // 참조가 동일한 이벤트 핸들러 등록시 하나만 등록
+    const handleClick = () => console.log('handleClick!');
+    $button.addEventListener('click', handleClick);
+    $button.addEventListener('click', handleClick);
+
+  </script>
+</body>
+</html>

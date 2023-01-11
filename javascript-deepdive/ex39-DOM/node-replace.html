@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>노드 교체</title>
+</head>
+<body>
+  <ul id="fruits">
+    <li>Apple</li>
+  </ul>
+</body>
+  <script>
+    // Node.prototype.replaceChild(newChild, oldChild)
+    // oldChild 를 newChild 로 교체한다. oldChild 는 자식이어야 하며, DOM 에서 제거된다.
+
+    const $fruits = document.getElementById('fruits');
+
+    // 기존 노드와 교체될 요소 노드 생성
+    const $newChild = document.createElement('li');
+    $newChild.textContent = 'Banana';
+
+    $fruits.replaceChild($newChild, $fruits.firstElementChild);
+
+  </script>
+</html>

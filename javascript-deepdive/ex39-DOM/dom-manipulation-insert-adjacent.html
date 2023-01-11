@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>insertAdjacentHTML</title>
+</head>
+<body>
+  <!-- beforebegin -->
+  <div id="foo">
+    <!-- afterbegin -->
+    text
+    <!-- beforeend -->
+  </div>
+  <!-- afterend -->
+  <script>
+    // Element.prototype.insertAdjacentHTML(position, DOMString)
+    // 두번째 인수로 전달된 HTML 문자열을 파싱하여, 첫 번째 인수로 전달한 위치에 삽입하여 반영
+    // HTML을 파싱하므로 크로스 사이트 스크립팅 공격에 취약
+
+    const $foo = document.getElementById('foo');
+
+    $foo.insertAdjacentHTML('beforebegin', '<p>beforebegin</p>');
+    $foo.insertAdjacentHTML('afterbegin', '<p>afterbegin</p>');
+    $foo.insertAdjacentHTML('beforeend', '<p>beforeend</p>');
+    $foo.insertAdjacentHTML('afterend', '<p>afterend</p>');
+
+  </script>
+</body>
+</html>

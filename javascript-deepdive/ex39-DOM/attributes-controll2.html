@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+  <input id="user" type="text" value="Yoon">
+  <input type="checkbox" checked>
+</body>
+  <script>
+    const $input = document.getElementById('user');
+
+    $input.oninput = () => {
+      console.log('value 프로퍼티 값', $input.value);
+      console.log('value 어트리뷰트 값', $input.getAttribute('value'));
+    };
+
+    // getAttribute: HTML attributes 값(DOM 프로퍼티값이 아니다), 초기 상태값
+    console.log('value 어트리뷰트 값', $input.getAttribute('value'));
+
+    // 사용자 입력에 의한 상태 변화와 관계가 없는 경우
+    // ex) id 어트리뷰트와 id 프로퍼티는 사용자 입력과 관계없이 항상 동일한 값으로 연동한다.
+    // DOM 프로퍼티 값 변경
+    $input.id = 'foo';
+
+    console.log($input.id); // foo
+    console.log($input.getAttribute('id')); // foo , 어트리뷰트도 변경되었다
+
+    const $checkbox = document.querySelector('input[type=checkbox]');
+
+    // getAttribute 메서드로 취득한 어트리뷰트 값은 언제나 문자열이다
+    console.log($checkbox.getAttribute('checked')); // ''
+    // DOM 프로퍼티로 취득한 최신 상태 값은 문자열이 아닐 수도 있다.
+    console.log($checkbox.checked); // true
+
+  </script>
+</html>

@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>innerHTML</title>
+</head>
+<body>
+  <div id="foo">Hello <span>World!</span></div>
+
+  <ul id="fruits">
+    <li class="apple">Apple</li>
+  </ul>
+  <script>
+    // Element.prototype.innerHTML: setter 와 getter 모두 존재
+    // HTML 마크업을 포함한 문자열 반환
+    // textContent 는 HTML을 무시하지만 innerHTML 은 HTML 을 포함하고 다시 파싱된다.
+
+    console.log(document.getElementById('foo').innerHTML); // Hello <span>World!</span>
+
+    document.getElementById('foo').innerHTML = 'Hi <span>there!</span>'
+
+    $fruits = document.getElementById('fruits');
+    $fruits.innerHTML += '<li class="banana">Banana</li>';
+    // 노드 교체
+    $fruits.innerHTML = '<li class="orange">Orange</li>';
+    // 노드 삭제
+    $fruits.innerHTML = '';
+
+    $fruits.innerHTML = '<li class="apple">Apple</li>';
+
+    // 스크립트도 실행됨
+    // 입력받은 값으로 innerHTML 프로퍼티에 할당할 경우 크로스 사이트 스크립팅 공격을 당할 수 있음
+    // HTML5는 innerHTML script 요소 내의 자바스크립트를 실행하지 않는다.
+    // $fruits.innerHTML = "<script>alert(document.cookie) <script>";
+    // 스크립트 태그를 쓰지 않더라도 위험,
+    document.getElementById('foo').innerHTML = `<img src="x" onerror="alert(document.cookie)">`
+  </script>
+</body>
+</html>

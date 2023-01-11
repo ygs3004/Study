@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>노드 삽입</title>
+</head>
+<body>
+  <div>test</div>
+  <ul id="fruits">
+    <li>Apple</li>
+    <li>Banana</li>
+  </ul>
+</body>
+  <script>
+    // 요소 노드 생성
+    const $li = document.createElement('li');
+
+    // 텍스트 노드를 $li 요소 노드의 마지막 노드로 추가
+    $li.appendChild(document.createTextNode('Orange'));
+
+    // $li 요소 노드를 #fruits 요소 노드의 마지막 자식 노드로 추가
+    document.getElementById('fruits').appendChild($li);
+
+    // 지정한 위치에 삽입
+    // Node.prototype.insertBefore(newNode, childNode): 요소 앞에 삽입
+    const $fruits = document.getElementById('fruits');
+
+    const $li2 = document.createElement('li'); // 요소 노드 생성
+
+    $li2.appendChild(document.createTextNode('Mango'));
+
+    $fruits.insertBefore($li2, $fruits.lastElementChild);
+
+    // 두번째 인수로 전달받은 노드는 반드시 #fruits 요소 노드의 자식 노드이어야 한다.
+    // $fruits.insertBefore($li, document.querySelector('div')); Uncaught DOMException: Failed to execute 'insertBefore' on 'Node'
+
+    // 두번째 인수로 전달받은 노드가 null 이면 appendChild 처럼 동작
+    const $li3 = document.createElement('li');
+
+    $li3.appendChild(document.createTextNode('Grape'));
+    $fruits.insertBefore($li3, null);
+
+
+    // 노드 이동: 이미 존재하는 노드를 appendChild, insertBefore 할 경우
+    // 있던 노드를 제거하고 차가함 -> 이동한다.
+
+    const [$apple, $banana] = $fruits.children;
+    $fruits.appendChild($apple);
+
+    $fruits.insertBefore($banana, $fruits.lastElementChild);
+  </script>
+</html>

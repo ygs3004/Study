@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>노드 복사</title>
+</head>
+<body>
+  <ul id="fruits">
+    <li>Apple</li>
+  </ul>
+</body>
+  <script>
+
+    // Node.prototype.cloneNode(true||false)
+    // true -> 깊은복사, 자식노드까지 복사
+    // false -> 얕은 복사하여 자식 노드는 복사되지 않음, 따라서 텍스트 노드도 복사되지 않음
+
+    const $fruits = document.getElementById('fruits');
+    const $apple = $fruits.firstChild;
+
+    // $apple 요소를 얕은 복사, 텍스트 노드가 없는 사본이 생성된다.
+    const $shallowClone = $apple.cloneNode();
+    console.log($shallowClone); // ""
+
+    // 사본 요소 노드에 텍스트 추가
+    $shallowClone.textContent = 'Banana';
+    // 사본 요소 노드를 #fruits 요소 노드의 마지막 노드로 추가
+    $fruits.appendChild($shallowClone);
+
+    // #fruits 요소를 깊은 복사, 모든 자손 노드가 포함된 사본이 생성된다.
+    const $deepClone = $fruits.cloneNode(true);
+    $fruits.appendChild($deepClone);
+  </script>
+</html>

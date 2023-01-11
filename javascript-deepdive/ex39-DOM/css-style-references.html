@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>요소에 적용되어 있는 css 스타일 참조</title>
+    <!--
+      style 프로퍼티는 인라인 스타일만 반환하므로 클래스, 상속등으로 적용된 style 프로퍼티 참조 불가
+      window.getComputedStyle(element[, pseudo]) 를 이용해 참조
+      첫 번째 인수(element)로 전ㄷ달한 요소 노드에 적용된 CSSStyleDeclaration 객체 반환
+
+      평가된 스타일(computed style): 요소 노드에 적용되어 있는 모든 스타일
+    -->
+  <style>
+    body {
+      color: red;
+    }
+    .box {
+      width: 100px;
+      height: 50px;
+      background-color: cornsilk;
+      border: 1px solid black;
+    }
+    .box:before {
+      content: 'Hello';
+    }
+  </style>
+</head>
+<body>
+  <div class="box">Box</div>
+  <script>
+    const $box = document.querySelector('.box');
+    const computedStyle = window.getComputedStyle($box);
+    console.log(computedStyle); // CSSStyleDeclaration
+
+    // 임베딩 스타일
+    console.log(computedStyle.width); // 100px
+    console.log(computedStyle.height); // 50px
+    console.log(computedStyle.backgroundColor); // rgb(255, 248, 220)
+    console.log(computedStyle.border); // 1px solid rgb(0, 0, 0)
+
+    // 상속 스타일(body -> .box)
+    console.log(computedStyle.color); //rgb(255, 0, 0)
+
+    // 기본 스타일
+    console.log(computedStyle.display); // block
+
+    const computedStyle2 = window.getComputedStyle($box, ':before');
+    console.log(computedStyle2.content); // "Hello"
+  </script>
+</body>
+</html>

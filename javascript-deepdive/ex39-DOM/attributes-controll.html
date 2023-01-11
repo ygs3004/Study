@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>HTML 어트리뷰트 조작</title>
+</head>
+<body>
+  <input id="user" type="text" value="Yoon">
+</body>
+  <script>
+    // 요소 노드는 2개의 상태, 초기상태와 최신상태를 관리해야 한다.
+    // 초기상태 : attributes 노드가 관리, 최신상태 : DOM 프로퍼티가 관리
+
+    // Element.prototype.getAttribute(attributeName)
+    // Element.prototype.setAttribute(attributeName, attributeValue)
+
+    const $input = document.getElementById('user');
+
+    // value 값을 취득
+    const inputValue = $input.getAttribute('value');
+    console.log(inputValue); // Yoon
+
+    // value 값을 변경
+    $input.setAttribute('value', 'foo')
+    console.log($input.getAttribute('value')); // foo
+
+    // Element.prototype.hasAttribute(attributeName)
+    // Element.prototype.removeAttribute(attributeName)
+
+    // value 존재 확인
+    if ($input.hasAttribute('value')) {
+        // value 어트리뷰트 삭제
+        $input.removeAttribute('value');
+    }
+
+    console.log($input.hasAttribute('value'));
+
+    // DOM 프로퍼티
+    // 값을 변경
+    $input.value = 'foo';
+    // 값을 참조
+    console.log($input.value); // foo
+
+  </script>
+</html>
