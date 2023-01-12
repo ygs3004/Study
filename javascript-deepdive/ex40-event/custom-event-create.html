@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>커스텀 이벤트 생성</title>
+</head>
+<body>
+
+</body>
+  <script>
+    // 문자열로 타입 지정, 기존의 이벤트 타입도 사용가능
+    const keyboardEvent = new KeyboardEvent("keyup");
+    console.log(keyboardEvent.type); // keyup
+    const customEvent = new KeyboardEvent("foo");
+    console.log(customEvent.type); // foo
+
+    const customMouseEvent = new MouseEvent('click');
+    console.log(customMouseEvent.type); // click
+    // 생성된 커스텀 이벤트 객체는 버블링 되지 않는다.
+    console.log(customMouseEvent.bubbles); // false
+    // 생성된 커스텀 이벤트 객체는 취소할 수 없다.(preventDefault 사용 불가)
+    console.log(customMouseEvent.cancelable); // false
+
+    // bubbles, cancelable 프로퍼티를 true로 설정하려면 생성자 함수의 두번째 인수로
+    // bubbles, cancelable 프로퍼티를 갖는 객체를 전달, 기타 프로퍼티도 값 지정 가능
+    const bubblesCancelableEvent = new MouseEvent('click', {
+      bubbles: true,
+      cancelable: true,
+    });
+
+    console.log(bubblesCancelableEvent.bubbles); // true
+    console.log(bubblesCancelableEvent.cancelable); // true
+
+    // 다른 프로퍼티도 생성자에서 지정 가능
+    const customPropertyEvent = new MouseEvent('click', {
+      bubbles: true,
+      cancelable: true,
+      clientX: 50,
+      clientY: 100
+    });
+
+    console.log(customPropertyEvent.clientX); // 50
+    console.log(customPropertyEvent.clientY); // 100
+
+    const customKeyboardEvent = new KeyboardEvent('keyup', {key: 'Enter'})
+    console.log(customKeyboardEvent.key) // Enter
+
+    // 커스텀 이벤트의 isTrusted 값은 언제나 false
+    // isTrusted: 사용자의 행위에 의해 발생한 이벤트 체크 값
+    const customInputEvent = new InputEvent('foo');
+    console.log(customInputEvent.isTrusted); // false
+
+  </script>
+</html>

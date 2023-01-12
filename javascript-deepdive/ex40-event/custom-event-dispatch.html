@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>커스텀 이벤트 디스패치</title>
+    <!-- 디스패치: 이벤트를 발생시키는 행위 -->
+</head>
+<body>
+  <button class="btn">Click me</button>
+</body>
+  <script>
+    const $button = document.querySelector('.btn');
+
+    const customEvent = new MouseEvent('click');
+
+    // CustomEvent 생성자 함수로 foo 이벤트 타입의 커스텀 이벤트 객체를 생성
+    const customEvent2 = new CustomEvent('foo',{
+        detail: {message: 'Hello'} // 이벤트와 함께 전달하고 싶은 정보
+    })
+
+    // 커스텀 이벤트를 디스패치 하기 이전에 이벤트 핸들러를 등록해야 한다.
+    // 어트리뷰트/프로퍼티 방식은 on+이벤트 타입으로 이루어진 이벤트 핸들러 어트리뷰트/프로퍼티가 요소노드에 존재하지 않기때문에 불가
+    $button.addEventListener('click', e => {
+      console.log(e);
+      alert(`${e} Clicked`);
+    });
+
+    $button.addEventListener('foo', e => {
+        // e.detail 에는 CustomEvent 함수의 두 번재 인수로 전달한 정보가 담겨 있다.
+        alert(e.detail.message)
+    })
+
+    // 커스텀 이벤트 디스패치(동기 처리), click 이벤트가 발생
+    $button.dispatchEvent(customEvent);
+    // 커스텀 이벤트 foo 발생
+    $button.dispatchEvent(customEvent2);
+  </script>
+</html>

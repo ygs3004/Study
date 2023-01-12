@@ -1,0 +1,19 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>이벤트 핸들러 내부의 어트리뷰트 방식</title>
+</head>
+<body>
+    <button onclick="handleClick(this)">Click me</button>
+    <script>
+        // 함수 내부의 this 는 일반함수로 호출되므로 전역 객체를 가리킨다.
+        // 인수로 전달한 this 는 이벤트를 바인딩한 DOM 요소를 가리킨다.
+
+        function handleClick(button) {
+            console.log(button) // button 요소
+            console.log(this); // window
+        }
+    </script>
+</body>
+</html>

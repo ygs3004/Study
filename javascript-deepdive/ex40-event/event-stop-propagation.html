@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>이벤트 전파 방지</title>
+</head>
+<body>
+  <div class="container">
+    <button class="btn1">Button 1</button>
+    <button class="btn2">Button 2</button>
+    <button class="btn3">Button 3</button>
+  </div>
+</body>
+  <script>
+    // 이벤트 위임. 클릭한 하위 버튼 요소의 color 변경
+    document.querySelector('.container').onclick = ({target}) => {
+      if(!target.matches('.container>button')) return;
+      target.style.color = 'red';
+    };
+
+    // .btn2 요소는 이벤트를 전파하지 않으므로 상위 요소에서 이벤트를 캐치할 수 없다.
+    document.querySelector('.btn2').onclick = e => {
+        e.stopPropagation(); // 이벤트 전파 중단
+        e.target.style.color = 'blue';
+    }
+  </script>
+</html>

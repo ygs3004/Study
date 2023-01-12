@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>클래스 사용시 이벤트 핸들러 this</title>
+</head>
+<body>
+  <button class="btn1">0</button>
+  <button class="btn2">0</button>
+</body>
+  <script>
+    class App{
+      constructor() {
+        this.$button = document.querySelector('.btn1');
+        this.count = 0;
+
+        // increase 메서드 이벤트 핸들러로 등록
+        // this.$button.onclick = this.increase;
+        this.$button.onclick = this.increase.bind(this);
+      }
+
+      increase(){
+        // 이벤트 핸들러 increase 내부의 this 는 DOM 요소(this.$button)을 가리킨다.
+        // 따라서 this.$button 은 this.$button.$button 과 같다.
+        this.$button.textContent = ++this.count; // bind(this)를 통하여 사용 가능
+        // Uncaught TypeError: Cannot set properties of undefined (setting 'textContent')
+      }
+    }
+
+    new App();
+
+    // 화살표 함수 이용시 this가 상위 인스턴스를 가리키게 할 수 있다.
+    // 단 이때 increase 함수는 프로토타입 메서드가 아닌 인스턴스 메서드가 된다.
+    class ArrowApp {
+      constructor() {
+        this.$button = document.querySelector('.btn2');
+        this.count = 0;
+
+        // 화살표 함수를 핸들로러 등록
+        this.$button.onclick = this.increase;
+      }
+
+      // 클래스 필드 정의
+      // increase는 인스턴스 메서드이며 내부의 this는 인스턴스를 가리킨다.
+      increase = () => this.$button.textContent = ++this.count;
+    }
+
+    new ArrowApp();
+  </script>
+</html>

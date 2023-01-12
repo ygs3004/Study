@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, user-scalable=no, initial-scale=1.0
+  maximum-scale=1.0, minimum-scale=1.0">
+    <title>callback hell</title>
+</head>
+<body>
+  <script>
+    let todos;
+    // GET 요청을 위한 비동기 함수
+    const get = url => {
+      const xhr = new XMLHttpRequest();
+      xhr.open('GET',url);
+      xhr.send();
+
+      xhr.onload = () => {
+        if (xhr.status === 200) {
+          // 서버의 응답을 콘솔에 출력
+          // 서버의 응답을 상위 스코프의 변수에 할당
+          todos = JSON.parse(xhr.response);
+          console.log(JSON.parse(xhr.response));
+
+          return JSON.parse(xhr.response); // 핸들러에서의 반환은 get 함수의 반환값이 아니다.
+        } else {
+          console.error(`${xhr.status} ${xhr.statusText}`)
+        }
+      }
+    };
+
+    const response = get('https://jsonplaceholder.typicode.com/posts/1');
+    console.log(response); // undefined, get함수는 반환값이 없다.
+
+    let g = 0;
+    setTimeout(() => {g=100;}, 0);
+    // 비동기 함수인 setTimeout 함수는 콜백 함수의 처리 결과를 외부로 반환하거나 상위 스코프 변수에 할당하지 못한다.
+    console.log(g); // 0
+    console.log(todos); // undefined 이벤트 핸들러가 현재 console.log(todos) 코드가 실행된 이후에 실행됨, 처리순서가 보장되지 않음
+  </script>
+</body>
+</html>

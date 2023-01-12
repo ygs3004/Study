@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>키보드 정보 취득</title>
+</head>
+<body>
+  <input type="text">
+  <em class="message"></em>
+  <script>
+    const $input = document.querySelector('input[type=text]');
+    const $msg = document.querySelector('.message');
+
+    // keyup 이벤트는 한글 입력후 엔터시 핸드러가 두번 호출되는 현상 발생
+    // 이를 피할려면 keyup 대신 keydown 이벤트 캐치
+    $input.onkeyup = e => {
+      // e.key는 입력한 키 값을 문자열로 반환
+      if (e.key !== 'Enter') return;
+
+      $msg.textContent = e.target.value;
+      e.target.value = '';
+    }
+
+    // https://keycode.info
+  </script>
+</body>
+</html>

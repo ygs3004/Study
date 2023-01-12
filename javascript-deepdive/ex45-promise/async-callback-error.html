@@ -1,0 +1,18 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, user-scalable=no, initial-scale=1.0
+  maximum-scale=1.0, minimum-scale=1.0">
+    <title>에러 처리의 한계</title>
+</head>
+<body>
+<script>
+  try{
+    setTimeout(() => {throw new Error('Error!');}, 1000);
+  }catch (e){
+    console.log('캐치한 에러', e);
+  }
+</script>
+</body>
+</html>

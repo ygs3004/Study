@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>DELETE 요청</title>
+</head>
+<body>
+    <pre></pre>
+    <script>
+        const xhr = new XMLHttpRequest();
+
+        // HTTP 요청 초기화
+        // todos 리소스에서 id 를 사용하여 todo를 삭제한다.
+        xhr.open('DELETE', '/todos/4');
+
+        // HTTP 요청 전송
+        xhr.send();
+
+        xhr.onload = () => {
+            if (xhr.status === 200) {
+                document.querySelector('pre').textContent = xhr.response;
+            } else {
+                console.error('Error', xhr.status, xhr.statusText);
+            }
+        };
+
+    </script>
+</body>
+</html>

@@ -48,7 +48,7 @@ console.log(firstName, lastName); // GunSoo Yoon
     console.log(length); // 5
 
     const todo = { id: 1,  content: 'HTML', completed: true };
-    // todo 객체로부터 id 프로퍼티만 추출
+    // todo객체로부터 id 프로퍼티만 추출
     const {id} = todo;
     console.log(id); // 1
 

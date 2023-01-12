@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>이벤트 전파</title>
+</head>
+<body>
+  <ul id="fruits">
+    <li id="apple">Apple</li>
+    <li id="banana">Banana</li>
+    <li id="orange">Orange</li>
+  </ul>
+</body>
+  <script>
+    const $fruits = document.getElementById('fruits');
+    const $banana = document.getElementById('banana');
+
+    // addEventListener 의 인자가 true 일 시 캡쳐링 단계의 이벤트 캐치 가능
+
+    // #fruits 요소의 하위 요소인 li 요소를 클릭한 경우 캡쳐링 단계의 이벤트를 캐치
+    $fruits.addEventListener('click', e => {
+      console.log(`이벤트 단계: ${e.eventPhase}`)
+      console.log(`이벤트 타깃: ${e.target}`)
+      console.log(`커런트 타깃: ${e.currentTarget}`)
+    }, true);
+
+    // 타깃 단계의 이벤트 캐치
+    $banana.addEventListener('click', e => {
+      console.log(`이벤트 단계: ${e.eventPhase}`)
+      console.log(`이벤트 타깃: ${e.target}`)
+      console.log(`커런트 타깃: ${e.currentTarget}`)
+    })
+
+    // 버블링 단계의 이벤트 캐치
+    $fruits.addEventListener('click', e => {
+      console.log(`이벤트 단계: ${e.eventPhase}`)
+      console.log(`이벤트 타깃: ${e.target}`)
+      console.log(`커런트 타깃: ${e.currentTarget}`)
+    });
+
+  </script>
+</html>

@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>retrieve</title>
+</head>
+<body>
+  <pre></pre>
+  <script>
+    // XMLHttpRequest 객체 생성
+    const xhr = new XMLHttpRequest();
+
+    // HTTP 요청 초기화
+    // todos 리소스에서 id를 사용하여 특정 todo를 취득(retrieve, 검색)
+    xhr.open('GET', '/todos/1');
+
+    // HTTP 요청 전송
+    xhr.send();
+
+    xhr.onload = () => {
+      if (xhr.status === 200) {
+        document.querySelector('pre').textContent = xhr.response;
+      } else {
+        console.error('Error', xhr,status, xhr.statusText);
+      }
+    }
+  </script>
+</body>
+</html>

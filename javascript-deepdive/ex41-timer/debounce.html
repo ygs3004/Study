@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>디바운스</title>
+</head>
+<body>
+  <input type="text">
+  <div class="msg"></div>
+</body>
+  <script>
+    const $input = document.querySelector('input');
+    const $msg = document.querySelector('.msg');
+
+    const debounce = (callback, delay) => {
+      let timerId
+      // debounce 함수는 timerId를 기억하는 클로저를 반환
+      return event => {
+        // delay가 경과하기 이전에 이벤트가 발생하면 이전 타이머를 취소하고 새로운 타이머 재설정
+        // 따라서 delay 보다 짧은 간격으로 이벤트가 발생하면 callback 이 호출되지 않는다.
+        if (timerId) clearTimeout(timerId);
+        timerId = setTimeout(callback, delay, event);
+      };
+    };
+
+    $input.oninput = debounce(e => {
+      $msg.textContent = e.target.value;
+    }, 300);
+
+    // resize, input 요소로 ajax(자동완성) UI, 버튼 중복 클릭방지 등에 사용
+    // 위으 함수는 간략하게 구현하여 완전하지 않다. Underscore 또는 Lodash 의 debounce 함수 사용 권장
+  </script>
+</html>

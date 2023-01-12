@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>디바운스와 스로틀</title>
+    <!--
+      scroll, resize, input, mousemove 같이 짧은 시간 연속에서 발생하는 이벤트에서
+      바인딩된 이벤트 핸들러가 과도하게 호출되어 성능에 문제를 일으킬수 있으므로
+      짧은시간 간격으로 연속해서 발생하는 이벤트를 그룹화해서 과도한 이벤트 핸들러의 호출을 방지하는
+      프로그래밍 기법
+    -->
+</head>
+<body>
+  <button>click me</button>
+  <pre>일반 클릭 이벤트 카운터 <span class="normal-msg">0</span></pre>
+  <pre>디바운스 클릭 이벤트 카운터 <span class="debounce-msg">0</span></pre>
+  <pre>스로틀 클릭 이벤트 카운터 <span class="throttle-msg">0</span></pre>
+</body>
+  <script>
+    const $button = document.querySelector('button');
+    const $normalMsg = document.querySelector('.normal-msg');
+    const $debounceMsg = document.querySelector('.debounce-msg');
+    const $throttleMsg = document.querySelector('.throttle-msg');
+
+    const debounce = (callback, delay) => {
+      let timerId;
+      return event => {
+        if(timerId) clearTimeout(timerId);
+        timerId = setTimeout(callback, delay, event);
+      };
+    };
+
+    const throttle = (callback, delay) => {
+      let timerId;
+      return event => {
+        if(timerId) return;
+        timerId = setTimeout(() => {
+          callback(event);
+          timerId = null;
+        }, delay, event);
+      };
+    };
+
+    $button.addEventListener('click', () => {
+      $normalMsg.textContent = +$normalMsg.textContent + 1;
+    });
+
+    $button.addEventListener('click', debounce(() => {
+      $debounceMsg.textContent = +$debounceMsg.textContent + 1;
+    }, 5000));
+
+    $button.addEventListener('click', throttle(() => {
+      $throttleMsg.textContent = +$throttleMsg.textContent + 1;
+    }, 5000));
+
+    // 디바운스: 최종적으로 호출된 함수를 한번
+    // 쓰로틀: 처음 호출된 함수를 한번
+  </script>
+</html>
