@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>fetch</title>
+</head>
+<body>
+  <script>
+    // const promise = fetch(url [, options])
+    // fetch 함수는 HTTP 응답을 나타내는 Response 객체를 래핑한 Promise 객체를 반환한다.
+    fetch('https://jsonplaceholder.typicode.com/todos/1')
+            // response 는 HTTP 응답을 나타내는 Response 객체다.
+            // Response.prototype.json 메서드를 사용하여 역직렬화한다.
+            .then(response => response.json())
+            .then(json => console.log(json));
+
+    // fetch 함수의 프로미스는 404 Not Found, 500 Internal Server Error와 같은 에러가 발생해도
+    // reject 하지 않고 불리언 타입의 ok 상태를 false 로 설정한 Response 객체를 resolve
+    // 오프라인 등의 네트워크 장애, CORS 에러에 의해 요청이 완료되지 못한 경우만 reject
+
+    const wrongUrl = 'https://jsonplaceholder.typicode.com/xxx/1';
+
+    fetch(wrongUrl)
+            .then(() => console.log('ok'))
+            .catch(() => console.log('error'));
+    // ok 반환
+
+    fetch(wrongUrl)
+            .then(response => {
+              if (!response.ok) throw new Error(response.statusText);
+              return response.json();
+            })
+            .then(todo => console.log(todo))
+            .catch(err => console.error(err, "에러발생!"));
+
+  </script>
+</body>
+</html>

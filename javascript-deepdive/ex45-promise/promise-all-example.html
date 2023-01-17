@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>GET 요청 비동기 처리</title>
+</head>
+<body>
+  <script>
+    const promiseGet = url => {
+      return new Promise((resolve, reject) => {
+        const xhr = new XMLHttpRequest();
+        xhr.open('GET', url);
+        xhr.send();
+
+        xhr.onload = () => {
+          if(xhr.status === 200){
+            // 성공적 응답시 resolve 호출
+            resolve(JSON.parse(xhr.response));
+          } else {
+            // 에러
+            reject(new Error(xhr.status));
+          }
+        };
+      });
+    };
+
+    const githubIds = ['jeresig', 'ygs3004', '0poison']
+
+    Promise.all(githubIds.map(id => promiseGet(`https://api.github.com/users/${id}`)))
+            .then(users => users.map(user => user.name))
+            .then(console.log)
+            .catch(console.error);
+  </script>
+</body>
+</html>

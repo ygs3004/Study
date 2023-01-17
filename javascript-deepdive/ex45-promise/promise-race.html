@@ -1,0 +1,23 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Promise.race</title>
+</head>
+<body>
+  <script>
+    // Promise.race: 배열 등의 이터러블을 인수로 받는다.
+    // 가장 먼저 fulfilled 상태가 된 프로미스의 처리 결과를 새로운 프로미스로 반환한다.
+    // 가장 먼저 전달된 프로미스가 rejected 되면 reject하는 새로운 프로미스 반환
+
+    Promise.race([
+        new Promise(resolve => setTimeout(() => resolve(1), 3000)), // 1
+        new Promise((_,rejected) => setTimeout(() => rejected(new Error('Error')), 4500)),
+        new Promise(resolve => setTimeout(() => resolve(2), 2000)), // 2
+        new Promise(resolve => setTimeout(() => resolve(3), 1000)) // 3
+    ])
+        .then(console.log) // 3
+        .catch(console.log);
+  </script>
+</body>
+</html>

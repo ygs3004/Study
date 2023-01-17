@@ -1,0 +1,17 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>모듈 스코프</title>
+    <!-- 전역 변수를 공유 -->
+    <!--    <script src="foo.js"></script> &lt;!&ndash; console.log(window.x) // foo &ndash;&gt;-->
+    <!--    <script src="bar.js"></script> &lt;!&ndash; console.log(window.x) // bar &ndash;&gt;-->
+
+  <!-- 모듈의 경우 전역 변수를 비공유 -->
+  <script type="module" src="foo.js"></script>
+  <script type="module" src="bar.mjs"></script> <!-- bar.mjs:1 Uncaught ReferenceError: x is not defined -->
+
+</head>
+<body>
+</body>
+</html>

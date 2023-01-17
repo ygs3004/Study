@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>프로미스 에러 처리</title>
+</head>
+<body>
+  <script>
+    // Promise.prototype.finally, 콜백 함수를 인수로 전달받음
+    // 프로미스의 성공 또는 실패와 상관 없이 한번 호출, 프로미스를 반환
+
+    new Promise(() => {}).finally(() => console.log('finally'));
+
+    const promiseGet = url => {
+      return new Promise((resolve, reject) => {
+        const xhr = new XMLHttpRequest();
+        xhr.open('GET', url);
+        xhr.send();
+
+        xhr.onload = () => {
+          if (xhr.status === 200) {
+            // 성공적으로 응답을 전달 받으면 resolve
+            resolve(JSON.parse(xhr.response));
+          } else{
+            // 에러 처리를 위해 reject
+            reject(new Error(xhr.status));
+          }
+        }
+      });
+    }
+
+    promiseGet('https://jsonplaceholder.typicode.com/posts/1')
+            .then(res => console.log(res))
+            .catch(res => console.log(res))
+            .finally(() => console.log('finally'));
+
+    // 에러 처리
+    const wrongUrl = 'https://jsonplaceholder.typicode.com/xxx/1';
+
+    // 부적절한 URL로 에러 발생 1
+    // promiseGet(wrongUrl).then(
+    //         res => console.log(res),
+    //         err => console.error(err)
+    // );
+
+    promiseGet(wrongUrl)
+            .then(res => console.log(res))
+            .catch(err => console.error(err));
+  </script>
+</body>
+</html>

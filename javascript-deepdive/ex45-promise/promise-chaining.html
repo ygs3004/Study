@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>promise 를 이용한 콜백 헬 수정</title>
+</head>
+<body>
+  <script>
+    const url = 'https://jsonplaceholder.typicode.com';
+
+    const promiseGet = url => {
+      return new Promise((resolve, reject) => {
+        const xhr = new XMLHttpRequest();
+        xhr.open('GET', url);
+        xhr.send();
+
+        xhr.onload = () => {
+          if (xhr.status === 200) {
+            resolve(JSON.parse(xhr.response));
+          } else {
+            reject(new Error(xhr.status));
+          }
+        };
+      });
+    };
+
+    // id가 1인 post의 userId를 취득
+    promiseGet(`${url}/posts/1`)
+            // 취득한 post의 userId로 user 정보를 취득
+            .then(({userId}) => promiseGet(`${url}/users/${userId}`))
+            .then(userInfo => console.log(userInfo))
+            .catch(err => console.error(err));
+
+    // async await
+    (async () => {
+        // id가 1인 post의 userId를 취득
+        const {userId} = await promiseGet(`${url}/posts/1`);
+
+        // 취득한 post의 userId로 user 정보를 취득
+        const userInfo = await promiseGet(`${url}/users/${userId}`);
+
+        console.log(userInfo);
+    })();
+  </script>
+</body>
+</html>

@@ -7,6 +7,26 @@
     <title>프로미스의 생성</title>
 </head>
 <body>
-
 </body>
+    <script>
+
+        const promiseGet = url => {
+            return new Promise((resolve, reject) => {
+                const xhr = new XMLHttpRequest();
+                xhr.open('GET', url);
+                xhr.send();
+
+                xhr.onload = () => {
+                    if (xhr.status === 200) {
+                        resolve(JSON.parse(xhr.response));
+                    } else {
+                        reject(new Error(xhr.status));
+                    }
+                };
+            });
+        };
+
+        // promiseGet 함수는 프로미스를 반환한다.
+        promiseGet('https://jsonplaceholder.typicode.com/posts/1');
+    </script>
 </html>
