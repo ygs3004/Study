@@ -1,0 +1,5 @@
+"scripts": {
+  "serve": "set NODE_OPTIONS=--openssl-legacy-provider && vue-cli-service serve",
+  "build": "set NODE_OPTIONS=--openssl-legacy-provider && vue-cli-service build",
+  "lint": "set NODE_OPTIONS=--openssl-legacy-provider && vue-cli-service lint"
+},
