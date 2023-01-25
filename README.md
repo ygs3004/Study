@@ -10,3 +10,5 @@ vue: Do it Vue js 입문
 vue-udemy: vue-완벽가이드(udemy 인강)
 
 javascript-deepdive: 자바스크립트 딥다이브
+
+정보처리기사 필기준비: 시나공 정보처리기사 필기 기출 오답노트
