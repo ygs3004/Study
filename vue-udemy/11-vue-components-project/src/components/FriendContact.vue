@@ -1,6 +1,7 @@
 <template>
   <li>
-    <h2>{{ name }}</h2>
+    <h2>{{ name }} {{ friendIsFavorite === '1' ? '(Favorite)':''}}</h2>
+    <button @click="toggleFavorite">Toggle Favorite</button>
     <button @click="toggleDetail">{{detailAreVisible ? 'Hide':'Show'}} Details</button>
     <ul v-if="detailAreVisible">
       <li>
@@ -21,16 +22,27 @@ export default {
   props: [
     'name',
     'phoneNumber',
-    'emailAddress'
+    'emailAddress',
+    'isFavorite'
   ],
   data() {
     return {
       detailAreVisible: false,
+      friendIsFavorite: this.isFavorite,
     }
   },
   methods: {
     toggleDetail() {
       this.detailAreVisible = !this.detailAreVisible;
+    },
+    // 부모 데이터의 불면성을 해칠수 없다
+    toggleFavorite() {
+      // if (this.isFavorite === '1'){  (x) 불가능
+      if (this.friendIsFavorite === '1'){
+        this.friendIsFavorite ='0';
+      }else {
+        this.friendIsFavorite = '1';
+      }
     },
   }
 };

@@ -6,12 +6,14 @@
       <friend-contact
           name="윤건수"
           phone-number="010-1234-1234"
-          email-address="ygs3004@localhost.com">
+          email-address="ygs3004@localhost.com"
+          is-favorite="1">
       </friend-contact>
       <friend-contact
           name="Julie"
           phone-number="010-4567-4567"
-          email-address="Julie@localhost.com">
+          email-address="Julie@localhost.com"
+          is-favorite="0">
       </friend-contact>
     </ul>
   </section>
