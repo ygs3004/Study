@@ -2,8 +2,19 @@
   <section>
     <header><h1>My Friends</h1></header>
     <ul>
-      <friend-contact></friend-contact>
-      <friend-contact></friend-contact>
+      <!-- HTML 부분에서 props 명은 케밥케이스 -->
+      <friend-contact
+          name="윤건수"
+          phone-number="010-1234-1234"
+          email-address="ygs3004@localhost.com"
+          is-favorite="1">
+      </friend-contact>
+      <friend-contact
+          name="Julie"
+          phone-number="010-4567-4567"
+          email-address="Julie@localhost.com"
+          is-favorite="0">
+      </friend-contact>
     </ul>
   </section>
 </template>
