@@ -4,16 +4,12 @@
     <ul>
       <!-- HTML 부분에서 props 명은 케밥케이스 -->
       <friend-contact
-          name="윤건수"
-          phone-number="010-1234-1234"
-          email-address="ygs3004@localhost.com"
-          is-favorite="1">
-      </friend-contact>
-      <friend-contact
-          name="Julie"
-          phone-number="010-4567-4567"
-          email-address="Julie@localhost.com"
-          is-favorite="0">
+          v-for="friend in friends"
+          :key="friend.id"
+          :name="friend.name"
+          :phone-number="friend.phone"
+          :email-address="friend.email"
+          :is-favorite="true">
       </friend-contact>
     </ul>
   </section>
@@ -22,13 +18,19 @@
 <script>
 export default {
   data() {
-    return{
+    return {
       friends: [
         {
           id: 'julie',
           name: 'Julie Jones',
           phone: '010 2345 2929',
           email: 'julie@localhost.com'
+        },
+        {
+          id: 'Ygs',
+          name: 'Yoon GunSoo',
+          phone: '010 111 222',
+          email: 'ygs@localhost.com'
         }
       ]
     }
