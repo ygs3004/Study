@@ -1,6 +1,6 @@
 <template>
   <li>
-    <h2>{{ name }} {{ friendIsFavorite ? '(Favorite)' : '' }}</h2>
+    <h2>{{ name }} {{ isFavorite ? '(Favorite)' : '' }}</h2>
     <button @click="toggleFavorite">Toggle Favorite</button>
     <button @click="toggleDetail">{{ detailAreVisible ? 'Hide' : 'Show' }} Details</button>
     <ul v-if="detailAreVisible">
@@ -10,7 +10,7 @@
       </li>
       <li>
         <strong>Email: </strong>
-        {{ emailAddress }}
+        {{ email }}
       </li>
     </ul>
   </li>
@@ -21,6 +21,10 @@ export default {
   /* 컴포넌트에서 props 변수명은 카멜케이스 사용(this를 이용하여 호출할때 '-'를 변수로 쓸수없음) */
   // props: ['name','phoneNumber','emailAddress','isFavorite'],
   props: {
+    id: {
+      type: String,
+      required: true,
+    },
     name: {
       type: String, // String이 아닐경우 에러
       // 지원되는 프로퍼티 값 : String, Number, Boolean, Array, Object, Date, Function, Symbol
@@ -28,11 +32,11 @@ export default {
     },
     phoneNumber: {
       type: String,
-      required: true
+      required: true,
     },
     email: {
       type: String,
-      required: true
+      required: true,
     },
     isFavorite: {
       type: Boolean,
@@ -43,10 +47,21 @@ export default {
       // },
     },
   },
+  // 가지고 있는 이벤트 목록 보여주기
+  emits: ['toggle-favorite'],
+  // emits: {
+  //   'toggle-favorite': function (id) {
+  //     if (id) {
+  //       return true;
+  //     } else {
+  //       console.warn('Id is missing!');
+  //       return false;
+  //     }
+  //   }
+  // },
   data() {
     return {
       detailAreVisible: false,
-      friendIsFavorite: this.isFavorite,
     }
   },
   methods: {
@@ -55,7 +70,7 @@ export default {
     },
     // 부모 데이터의 불면성을 해칠수 없다
     toggleFavorite() {
-      this.friendIsFavorite = !this.friendIsFavorite;
+      this.$emit('toggle-favorite', this.id);
     },
   }
 };

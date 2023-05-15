@@ -1,4 +1,4 @@
-package function.badExample;
+package function.fitnessExample.notGood;
 import function.junk.*;
 
 public class HtmlUtil {

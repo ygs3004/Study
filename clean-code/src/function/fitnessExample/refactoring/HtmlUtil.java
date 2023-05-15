@@ -1,4 +1,4 @@
-package function.refactoring;
+package function.fitnessExample.refactoring;
 
 import function.junk.PageData;
 import function.junk.WikiPage;
