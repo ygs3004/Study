@@ -13,6 +13,7 @@
         {{ email }}
       </li>
     </ul>
+    <button @click="$emit('delete', id)">Delete</button>
   </li>
 </template>
 
@@ -48,17 +49,7 @@ export default {
     },
   },
   // 가지고 있는 이벤트 목록 보여주기
-  emits: ['toggle-favorite'],
-  // emits: {
-  //   'toggle-favorite': function (id) {
-  //     if (id) {
-  //       return true;
-  //     } else {
-  //       console.warn('Id is missing!');
-  //       return false;
-  //     }
-  //   }
-  // },
+  emits: ['toggle-favorite', 'delete'],
   data() {
     return {
       detailAreVisible: false,
