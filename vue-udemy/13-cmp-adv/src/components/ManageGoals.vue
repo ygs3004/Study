@@ -2,11 +2,13 @@
   <h2>ManageGoals</h2>
   <input type="text" ref="goal"/>
   <button @click="setGoal">SetGoal</button>
-  <error-alert v-if="inputIsValid">
-    <h2>입력값이 존재하지 않습니다.</h2>
-    <p>값을 입력해주세요.</p>
-    <button @click="confirmError">닫기</button>
-  </error-alert>
+  <teleport to="body">
+    <error-alert v-if="inputIsValid">
+      <h2>입력값이 존재하지 않습니다.</h2>
+      <p>값을 입력해주세요.</p>
+      <button @click="confirmError">닫기</button>
+    </error-alert>
+  </teleport>
 </template>
 
 <script>
