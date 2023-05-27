@@ -4,8 +4,8 @@ import App from './App.vue';
 // import TheHeader from './components/TheHeader.vue';
 // import UserInfo from './components/UserInfo.vue';
 // import BadgeList from './components/BadgeList.vue';
-import BaseBadge from './components/BaseBadge.vue';
-import BaseCard from "@/components/BaseCard.vue";
+import BaseBadge from '@/components/UI/BaseBadge.vue';
+import BaseCard from "@/components/UI/BaseCard.vue";
 
 
 
