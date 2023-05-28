@@ -51,7 +51,8 @@ export default {
   provide() {
     return {
       resources: this.storedResources,
-      addResource: this.addResource
+      addResource: this.addResource,
+      deleteResource: this.removeResource
     }
   },
   methods: {
@@ -68,6 +69,12 @@ export default {
 
       this.storedResources.unshift(newResource);
       this.selectedTab = 'stored-resources';
+    },
+    removeResource(resId) {
+      // 초기 배열의 참조값으로 inject 하므로 vue 에서는 안됨
+      // this.storedResources = this.storedResources.filter(res => res.id !== resId);
+      const resIndex = this.storedResources.findIndex(res => res.id === resId);
+      this.storedResources.splice(resIndex, 1);
     }
   }
 }
