@@ -1,15 +1,17 @@
 <template>
-  <base-card>
-    <base-button @click="setSeletedTab('stored-resources')"
-                 :mode="storedResButtonMode">Stored Resources
-    </base-button>
-    <base-button @click="setSeletedTab('add-resource')"
-                 :mode="addResButtonMode">Add Resource
-    </base-button>
-  </base-card>
-  <keep-alive>
-    <component :is="selectedTab"></component>
-  </keep-alive>
+  <teleport to="body">
+    <base-card>
+      <base-button @click="setSeletedTab('stored-resources')"
+                   :mode="storedResButtonMode">Stored Resources
+      </base-button>
+      <base-button @click="setSeletedTab('add-resource')"
+                   :mode="addResButtonMode">Add Resource
+      </base-button>
+    </base-card>
+    <keep-alive>
+      <component :is="selectedTab"></component>
+    </keep-alive>
+  </teleport>
 </template>
 
 <script>
