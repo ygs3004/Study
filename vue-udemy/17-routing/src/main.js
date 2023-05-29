@@ -11,6 +11,7 @@ const router = createRouter({
     { path: '/teams', component: TeamsList },
     { path: '/users', component: UsersList },
   ], // out-domain.com/teams
+  linkActiveClass: 'active',
 });
 
 const app = createApp(App);
