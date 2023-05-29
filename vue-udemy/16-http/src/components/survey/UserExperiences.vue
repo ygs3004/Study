@@ -6,7 +6,8 @@
         <base-button @click='loadExperiences'>Load Submitted Experiences</base-button>
       </div>
       <p v-if='isLoading'>Loading...</p>
-      <ul v-else>
+      <p v-else-if='!isLoading && (!results || results.length === 0)'>No Stored Experieces found. Start adding some survey result first.</p>
+      <ul v-else-if='!isLoading && results && results.length > 0'>
         <survey-result
           v-for="result in results"
           :key="result.id"
@@ -57,10 +58,10 @@ export default {
   },
   mounted(){
     // 인터넷 속도차이?, 인강에선 nextTick이 없어도 되는뎅 ㅠㅠ
-    this.loadExperiences();
-    // this.$nextTick(() => {
-    //   this.loadExperiences();
-    // })
+    // this.loadExperiences();
+    this.$nextTick(() => {
+      this.loadExperiences();
+    })
   }
 };
 </script>
