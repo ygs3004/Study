@@ -6,6 +6,7 @@
         <base-button @click='loadExperiences'>Load Submitted Experiences</base-button>
       </div>
       <p v-if='isLoading'>Loading...</p>
+      <p v-else-if='!isLoading && error'>{{error}}</p>
       <p v-else-if='!isLoading && (!results || results.length === 0)'>No Stored Experieces found. Start adding some survey result first.</p>
       <ul v-else-if='!isLoading && results && results.length > 0'>
         <survey-result
@@ -29,18 +30,21 @@ export default {
   data(){
     return {
       results: [],
-      isLoading: false
+      isLoading: false,
+      error: null,
     }
   },
   methods:{
+    // 에러 발생, 잘못된 URL
     loadExperiences(){
       this.isLoading = true;
-      fetch(this.$firebaseUrl)
+      this.error = null;
+      fetch('https://udemy-vue-http-c66d7-default-rtdb.firebaseio.com/survyes.json')
         .then(response => {
-        if(response.ok){
-          return response.json();
-        }
-      })
+          if(response.ok){
+            return response.json();
+          }
+        })
         .then(data => {
           // console.log(data)
           this.isLoading = false;
@@ -53,15 +57,16 @@ export default {
             })
           }
           this.results = result;
+        })
+        .catch(error => {
+          console.log(error);
+          this.isLoading = false;
+          this.error = 'Failed to fetch data - please try again later.';
         });
     },
   },
   mounted(){
-    // 인터넷 속도차이?, 인강에선 nextTick이 없어도 되는뎅 ㅠㅠ
-    // this.loadExperiences();
-    this.$nextTick(() => {
-      this.loadExperiences();
-    })
+    this.loadExperiences();
   }
 };
 </script>
