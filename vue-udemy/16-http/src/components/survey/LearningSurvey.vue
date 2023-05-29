@@ -29,6 +29,7 @@
         <p
           v-if="invalidInput"
         >One or more input fields are invalid. Please check your provided data.</p>
+        <p v-if='error'>{{error}}</p>
         <div>
           <base-button>Submit</base-button>
         </div>
@@ -45,6 +46,7 @@ export default {
       enteredName: '',
       chosenRating: null,
       invalidInput: false,
+      error:null,
     };
   },
   // emits: ['survey-submit'],
@@ -60,22 +62,35 @@ export default {
       //   userName: this.enteredName,
       //   rating: this.chosenRating,
       // });
+      // this.error = null;
+      // this.$axios.post(this.$firebaseUrl, {
+      //   name: this.enteredName,
+      //   rating: this.chosenRating
+      // }).catch(error => {
+      //   console.log(error);
+      //   this.error = 'Something went wrong - try again later'
+      // })
 
-      this.$axios.post(this.$firebaseUrl, {
-        name: this.enteredName,
-        rating: this.chosenRating
-      })
-
-      // fetch('https://udemy-vue-http-c66d7-default-rtdb.firebaseio.com/survyes.json', {
-      //   method: 'POST',
-      //   headers: {
-      //     'Content-Type': 'application/json'
-      //   },
-      //   body:JSON.stringify({
-      //     name: this.enteredName,
-      //     rating: this.chosenRating
-      //   })
-      // });
+      fetch('https://udemy-vue-http-c66d7-default-rtdb.firebaseio.com/survyes.json', {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json'
+        },
+        body:JSON.stringify({
+          name: this.enteredName,
+          rating: this.chosenRating
+        })
+      }).then(response => {
+        if(response.ok){
+        /**/
+        }else{
+          throw new Error('Could not save data!');
+        }
+      }).catch(error => {
+        console.log(error);
+        // this.error = 'Something went wrong - try again later'
+        this.error = error.message;
+      });
 
       this.enteredName = '';
       this.chosenRating = null;
