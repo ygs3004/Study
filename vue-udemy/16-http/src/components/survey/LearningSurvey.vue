@@ -38,6 +38,7 @@
 </template>
 
 <script>
+
 export default {
   data() {
     return {
@@ -60,16 +61,21 @@ export default {
       //   rating: this.chosenRating,
       // });
 
-      fetch('https://udemy-vue-http-c66d7-default-rtdb.firebaseio.com/survyes.json', {
-        method: 'POST',
-        headers: {
-          'Content-Type': 'application/json'
-        },
-        body:JSON.stringify({
-          name: this.enteredName,
-          rating: this.chosenRating
-        })
-      });
+      this.$axios.post(this.$firebaseUrl, {
+        name: this.enteredName,
+        rating: this.chosenRating
+      })
+
+      // fetch('https://udemy-vue-http-c66d7-default-rtdb.firebaseio.com/survyes.json', {
+      //   method: 'POST',
+      //   headers: {
+      //     'Content-Type': 'application/json'
+      //   },
+      //   body:JSON.stringify({
+      //     name: this.enteredName,
+      //     rating: this.chosenRating
+      //   })
+      // });
 
       this.enteredName = '';
       this.chosenRating = null;
