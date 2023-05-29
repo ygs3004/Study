@@ -5,7 +5,8 @@
       <div>
         <base-button @click='loadExperiences'>Load Submitted Experiences</base-button>
       </div>
-      <ul>
+      <p v-if='isLoading'>Loading...</p>
+      <ul v-else>
         <survey-result
           v-for="result in results"
           :key="result.id"
@@ -26,11 +27,13 @@ export default {
   },
   data(){
     return {
-      results: []
+      results: [],
+      isLoading: false
     }
   },
   methods:{
     loadExperiences(){
+      this.isLoading = true;
       fetch(this.$firebaseUrl)
         .then(response => {
         if(response.ok){
@@ -39,6 +42,7 @@ export default {
       })
         .then(data => {
           // console.log(data)
+          this.isLoading = false;
           const result = [];
           for(const id in data){
             result.push({
@@ -50,6 +54,13 @@ export default {
           this.results = result;
         });
     },
+  },
+  mounted(){
+    // 인터넷 속도차이?, 인강에선 nextTick이 없어도 되는뎅 ㅠㅠ
+    this.loadExperiences();
+    // this.$nextTick(() => {
+    //   this.loadExperiences();
+    // })
   }
 };
 </script>
