@@ -14,9 +14,14 @@ const router = createRouter({
     { path: '/', redirect: '/teams' },
     /* alias 이용시 URL이 변하지 않음 */
     // { path: '/teams', component: TeamsList, alias: '/' },
-    { path: '/teams', component: TeamsList },
+    // { path: '/teams/:teamId', component: TeamMembers, props: true },
+    {
+      path: '/teams',
+      component: TeamsList,
+      children: [{ path: ':teamId', component: TeamMembers, props: true }],
+    },
     { path: '/users', component: UsersList },
-    { path: '/teams/:teamId', component: TeamMembers, props: true },
+
     /* Catch All 라우트 */
     // { path: '/:notFound(.*)', redirect: '/teams' },
     { path: '/:notFound(.*)', component: NotFound },
