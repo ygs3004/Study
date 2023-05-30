@@ -11,7 +11,14 @@ export default {
   props: ['id', 'name', 'memberCount'],
   computed: {
     teamMemberLink() {
-      return `/teams/${this.id}`;
+      // return `/teams/${this.id}`;
+      // 기명 라우트
+      return {
+        name: 'team-members', // main.js route 배열 내부에서 선언한이름
+        params: {
+          teamId: this.id
+        }
+      };
     }
   }
 };
