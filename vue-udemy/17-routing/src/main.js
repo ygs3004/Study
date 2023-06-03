@@ -39,6 +39,11 @@ const router = createRouter({
         default: UsersList,
         footer: UsersFooter,
       },
+      beforeEnter(to, from, next) {
+        console.log('users beforeEnter');
+        console.log(to, from);
+        next();
+      },
     },
 
     /* Catch All 라우트 */
@@ -63,7 +68,7 @@ router.beforeEach((to, from, next) => {
   console.log(from);
   // next 호출 -> 페이지 이동을 허용
   // next(false); // next 호출 -> 페이지 이동을 금지
-  
+
   // if (to.name === 'team-members') {
   //   next();
   // } else {
