@@ -77,6 +77,12 @@ router.beforeEach((to, from, next) => {
   next();
 });
 
+router.afterEach((to, from) => {
+  // sending analytics data
+  console.log('Global afterEach');
+  console.log(to, from);
+});
+
 const app = createApp(App);
 
 app.use(router);
