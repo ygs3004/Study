@@ -3,6 +3,17 @@
     <div class='block' :class='{animate: animatedBlock}'></div>
     <button @click='animateBlock'>Animate</button>
   </div>
+  <div class='container'>
+    <!-- Element not mounted -->
+    <!-- -enter-from, -enter-active, -enter-to   -->
+    <!-- Element mounted -->
+    <!-- -leave-from, -leave-active, -leave-to   -->
+    <!-- Element not mounted -->
+    <transition>
+      <p v-if='paraIsVisible'>버튼을 눌러야 보입니다!</p>
+    </transition>
+    <button @click='toggleParagraph'>문단 열기</button>
+  </div>
   <base-modal @close='hideDialog' v-if='dialogIsVisible'>
     <p>This is a test dialog!</p>
     <button @click='hideDialog'>Close it!</button>
@@ -17,12 +28,16 @@ export default {
   data() {
     return {
       animatedBlock: false,
-      dialogIsVisible: false
+      dialogIsVisible: false,
+      paraIsVisible: false
     };
   },
   methods: {
     animateBlock() {
       this.animatedBlock = true;
+    },
+    toggleParagraph() {
+      this.paraIsVisible = !this.paraIsVisible;
     },
     showDialog() {
       this.dialogIsVisible = true;
