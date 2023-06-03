@@ -20,6 +20,9 @@ const router = createRouter({
     {
       name: 'teams',
       path: '/teams',
+      meta: {
+        needsAuth: true,
+      },
       components: {
         default: TeamsList,
         footer: TeamsFooter,
@@ -66,6 +69,13 @@ router.beforeEach((to, from, next) => {
   console.log('Global beforeEach');
   console.log(to);
   console.log(from);
+  if (to.meta.needsAuth) {
+    console.log('Needs auth!');
+    next();
+  } else {
+    next();
+  }
+
   // next 호출 -> 페이지 이동을 허용
   // next(false); // next 호출 -> 페이지 이동을 금지
 
