@@ -48,11 +48,28 @@ const router = createRouter({
   linkActiveClass: 'active',
 
   // 페이지를 변경할때 자동 호출
-  scrollBehavior(to, from, savedPosition) {
-    console.log(to, from, savedPosition);
+  // 뒤로가기 등시 페이지의 스크롤 위치를 저장
+  scrollBehavior(_, __, savedPosition) {
+    // console.log(to, from, savedPosition);
     if (savedPosition) return savedPosition;
     else return { left: 0, top: 0 };
   },
+});
+
+// 페이지 이동(navigate)할때마다 실행
+router.beforeEach((to, from, next) => {
+  console.log('Global beforeEach');
+  console.log(to);
+  console.log(from);
+  // next 호출 -> 페이지 이동을 허용
+  // next(false); // next 호출 -> 페이지 이동을 금지
+  
+  // if (to.name === 'team-members') {
+  //   next();
+  // } else {
+  //   next({ name: 'team-members', params: { teamId: 't2' } });
+  // }
+  next();
 });
 
 const app = createApp(App);
