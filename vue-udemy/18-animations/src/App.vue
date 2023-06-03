@@ -98,6 +98,34 @@ button:active {
   border-radius: 12px;
 }
 
+.v-enter-from {
+  opacity: 0;
+  transform: translateY(-30px);
+}
+
+.v-enter-active {
+  transition: all 0.3s ease-out;
+}
+
+.v-enter-to {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+.v-leave-from {
+  opacity: 0.5;
+  transform: translateY(0);
+}
+
+.v-leave-active {
+  transition: all 0.3s ease-in;
+}
+
+.v-leave-to {
+  opacity: 0;
+  transform: translateY(100px);
+}
+
 .animate {
   /*transform: translateX(150px);*/
   animation: slide-fade 0.3s ease-out forwards;
