@@ -14,7 +14,7 @@
     </transition>
     <button @click='toggleParagraph'>문단 열기</button>
   </div>
-  <base-modal @close='hideDialog' v-if='dialogIsVisible'>
+  <base-modal @close='hideDialog' :open='dialogIsVisible'>
     <p>This is a test dialog!</p>
     <button @click='hideDialog'>Close it!</button>
   </base-modal>
@@ -132,6 +132,7 @@ button:active {
   /*transform: translateX(150px);*/
   animation: slide-fade 0.3s ease-out;
 }
+
 
 @keyframes slide-scale {
   0% {
