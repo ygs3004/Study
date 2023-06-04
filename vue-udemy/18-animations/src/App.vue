@@ -14,6 +14,12 @@
     </transition>
     <button @click='toggleParagraph'>문단 열기</button>
   </div>
+  <div class='container'>
+    <transition name='fade-button' mode='out-in'>
+      <button @click='showUsers' v-if='!this.userAreVisible'>사용자 보기</button>
+      <button @click='hideUsers' v-else>사용자 숨기기</button>
+    </transition>
+  </div>
   <base-modal @close='hideDialog' :open='dialogIsVisible'>
     <p>This is a test dialog!</p>
     <button @click='hideDialog'>Close it!</button>
@@ -29,7 +35,8 @@ export default {
     return {
       animatedBlock: false,
       dialogIsVisible: false,
-      paraIsVisible: false
+      paraIsVisible: false,
+      userAreVisible: false
     };
   },
   methods: {
@@ -44,6 +51,12 @@ export default {
     },
     hideDialog() {
       this.dialogIsVisible = false;
+    },
+    showUsers() {
+      this.userAreVisible = true;
+    },
+    hideUsers() {
+      this.userAreVisible = false;
     }
   }
 };
@@ -133,6 +146,23 @@ button:active {
   animation: slide-fade 0.3s ease-out;
 }
 
+.fade-button-enter-from,
+.fade-button-leave-from {
+  opacity: 0;
+}
+
+.fade-button-enter-active {
+  transition: opacity 0.3s ease-out;
+}
+
+.fade-button-leave-active {
+  transition: opacity 0.3s ease-in;
+}
+
+.fade-button-enter-to,
+.fade-button-leave-to {
+  opacity: 1;
+}
 
 @keyframes slide-scale {
   0% {
