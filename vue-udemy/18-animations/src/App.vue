@@ -9,7 +9,8 @@
     <!-- Element mounted -->
     <!-- -leave-from, -leave-active, -leave-to   -->
     <!-- Element not mounted -->
-    <transition name='para'
+    <!--    <transition name='para'-->
+    <transition :css='false'
                 @before-enter='beforeEnter'
                 @enter='enter'
                 @after-enter='afterEnter'
