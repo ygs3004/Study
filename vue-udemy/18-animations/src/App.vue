@@ -1,54 +1,61 @@
 <template>
-  <div class='container'>
-    <user-list></user-list>
-  </div>
-  <div class='container'>
-    <div class='block' :class='{animate: animatedBlock}'></div>
-    <button @click='animateBlock'>Animate</button>
-  </div>
-  <div class='container'>
-    <!-- Element not mounted -->
-    <!-- -enter-from, -enter-active, -enter-to   -->
-    <!-- Element mounted -->
-    <!-- -leave-from, -leave-active, -leave-to   -->
-    <!-- Element not mounted -->
-    <!--    <transition name='para'-->
-    <transition :css='false'
-                @before-enter='beforeEnter'
-                @enter='enter'
-                @after-enter='afterEnter'
-                @before-leave='beforeLeave'
-                @leave='leave'
-                @after-leave='afterLeave'
-                @enter-cancelled='enterCancelled'
-                @leave-cancelled='leaveCancelled'
-    >
-      <p v-if='paraIsVisible'>버튼을 눌러야 보입니다!</p>
-    </transition>
-    <button @click='toggleParagraph'>문단 열기</button>
-  </div>
-  <div class='container'>
+  <!--  <div class='container'>-->
+  <!--    <user-list></user-list>-->
+  <!--  </div>-->
+  <!--  <div class='container'>-->
+  <!--    <div class='block' :class='{animate: animatedBlock}'></div>-->
+  <!--    <button @click='animateBlock'>Animate</button>-->
+  <!--  </div>-->
+  <!--  <div class='container'>-->
+  <!--    &lt;!&ndash; Element not mounted &ndash;&gt;-->
+  <!--    &lt;!&ndash; -enter-from, -enter-active, -enter-to   &ndash;&gt;-->
+  <!--    &lt;!&ndash; Element mounted &ndash;&gt;-->
+  <!--    &lt;!&ndash; -leave-from, -leave-active, -leave-to   &ndash;&gt;-->
+  <!--    &lt;!&ndash; Element not mounted &ndash;&gt;-->
+  <!--    &lt;!&ndash;    <transition name='para'&ndash;&gt;-->
+  <!--    <transition :css='false'-->
+  <!--                @before-enter='beforeEnter'-->
+  <!--                @enter='enter'-->
+  <!--                @after-enter='afterEnter'-->
+  <!--                @before-leave='beforeLeave'-->
+  <!--                @leave='leave'-->
+  <!--                @after-leave='afterLeave'-->
+  <!--                @enter-cancelled='enterCancelled'-->
+  <!--                @leave-cancelled='leaveCancelled'-->
+  <!--    >-->
+  <!--      <p v-if='paraIsVisible'>버튼을 눌러야 보입니다!</p>-->
+  <!--    </transition>-->
+  <!--    <button @click='toggleParagraph'>문단 열기</button>-->
+  <!--  </div>-->
+  <!--  <div class='container'>-->
+  <!--    <transition name='fade-button' mode='out-in'>-->
+  <!--      <button @click='showUsers' v-if='!this.userAreVisible'>사용자 보기</button>-->
+  <!--      <button @click='hideUsers' v-else>사용자 숨기기</button>-->
+  <!--    </transition>-->
+  <!--  </div>-->
+  <!--  <base-modal @close='hideDialog' :open='dialogIsVisible'>-->
+  <!--    <p>This is a test dialog!</p>-->
+  <!--    <button @click='hideDialog'>Close it!</button>-->
+  <!--  </base-modal>-->
+  <!--  <div class='container'>-->
+  <!--    <button @click='showDialog'>Show Dialog</button>-->
+  <!--  </div>-->
+
+  <router-view #='slotProps'>
     <transition name='fade-button' mode='out-in'>
-      <button @click='showUsers' v-if='!this.userAreVisible'>사용자 보기</button>
-      <button @click='hideUsers' v-else>사용자 숨기기</button>
+      <component :is='slotProps.Component'></component>
     </transition>
-  </div>
-  <base-modal @close='hideDialog' :open='dialogIsVisible'>
-    <p>This is a test dialog!</p>
-    <button @click='hideDialog'>Close it!</button>
-  </base-modal>
-  <div class='container'>
-    <button @click='showDialog'>Show Dialog</button>
-  </div>
+  </router-view>
+
 </template>
 
 <script>
-import UserList from '@/components/UserList.vue';
+// import UserList from '@/components/UserList.vue';
 
 export default {
-  components: {
-    UserList
-  },
+  // components: {
+  //   UserList
+  // },
   data() {
     return {
       animatedBlock: false,
@@ -221,7 +228,7 @@ button:active {
 }
 
 .fade-button-enter-from,
-.fade-button-leave-from {
+.fade-button-leave-to {
   opacity: 0;
 }
 
@@ -234,8 +241,22 @@ button:active {
 }
 
 .fade-button-enter-to,
-.fade-button-leave-to {
+.fade-button-leave-from {
   opacity: 1;
+}
+
+.route-enter-from {
+}
+
+.route-enter-active {
+  animation: slide-sacle 0.4s ease-out;
+}
+
+.route-enter-to {
+}
+
+.route-leave-active {
+  animation: slide-scale 0.4s ease-in;
 }
 
 @keyframes slide-scale {
