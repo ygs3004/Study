@@ -16,6 +16,8 @@
                 @before-leave='beforeLeave'
                 @leave='leave'
                 @after-leave='afterLeave'
+                @enter-cancelled='enterCancelled'
+                @leave-cancelled='leaveCancelled'
     >
       <p v-if='paraIsVisible'>버튼을 눌러야 보입니다!</p>
     </transition>
@@ -43,17 +45,37 @@ export default {
       animatedBlock: false,
       dialogIsVisible: false,
       paraIsVisible: false,
-      userAreVisible: false
+      userAreVisible: false,
+      enterInterval: null,
+      leaveInterval: null
     };
   },
   methods: {
+    enterCancelled() {
+      console.log('enterCancelled');
+      clearInterval(this.enterInterval);
+    },
+    leaveCancelled() {
+      console.log('leaveCancelled');
+      clearInterval(this.leaveInterval);
+    },
     beforeEnter(el) {
       console.log('beforeEnter');
       console.log(el);
+      el.style.opacity = 0;
     },
-    enter(el) {
+    enter(el, done) {
       console.log('enter');
       console.log(el);
+      let round = 1;
+      this.enterInterval = setInterval(() => {
+        el.style.opacity = round * 0.01;
+        round++;
+        if (round > 100) {
+          clearInterval(this.enterInterval);
+          done();
+        }
+      }, 20);
     },
     afterEnter(el) {
       console.log('afterEnter');
@@ -62,15 +84,27 @@ export default {
     beforeLeave(el) {
       console.log('beforeLeave');
       console.log(el);
+      el.style.opacity = 1;
     },
-    leave(el) {
+    leave(el, done) {
       console.log('leave');
       console.log(el);
+      let round = 1;
+      this.leaveInterval = setInterval(() => {
+        el.style.opacity = 1 - (round * 0.01);
+        round++;
+        if (round > 100) {
+          clearInterval(this.leaveInterval);
+          done();
+        }
+      }, 20);
     },
     afterLeave(el) {
       console.log('afterLeave');
       console.log(el);
     },
+
+
     animateBlock() {
       this.animatedBlock = true;
     },
@@ -142,35 +176,35 @@ button:active {
   border-radius: 12px;
 }
 
-.para-enter-from {
-  /*opacity: 0;*/
-  /*transform: translateY(-30px);*/
-}
+/*.para-enter-from {*/
+/*  !*opacity: 0;*!*/
+/*  !*transform: translateY(-30px);*!*/
+/*}*/
 
-.para-enter-active {
-  /*transition: all 0.3s ease-out;*/
-  animation: slide-scale 0.3s ease-out
-}
+/*.para-enter-active {*/
+/*  !*transition: all 0.3s ease-out;*!*/
+/*  animation: slide-scale 0.3s ease-out*/
+/*}*/
 
-.para-enter-to {
-  /*opacity: 1;*/
-  /*transform: translateY(0);*/
-}
+/*.para-enter-to {*/
+/*  !*opacity: 1;*!*/
+/*  !*transform: translateY(0);*!*/
+/*}*/
 
-.para-leave-from {
-  /*opacity: 0.5;*/
-  /*transform: translateY(0);*/
-}
+/*.para-leave-from {*/
+/*  !*opacity: 0.5;*!*/
+/*  !*transform: translateY(0);*!*/
+/*}*/
 
-.para-leave-active {
-  /*transition: all 0.3s ease-in;*/
-  animation: slide-scale 0.3s ease-out;
-}
+/*.para-leave-active {*/
+/*  !*transition: all 0.3s ease-in;*!*/
+/*  animation: slide-scale 0.3s ease-out;*/
+/*}*/
 
-.para-leave-to {
-  /*opacity: 0;*/
-  /*transform: translateY(100px);*/
-}
+/*.para-leave-to {*/
+/*  !*opacity: 0;*!*/
+/*  !*transform: translateY(100px);*!*/
+/*}*/
 
 .animate {
   /*transform: translateX(150px);*/
