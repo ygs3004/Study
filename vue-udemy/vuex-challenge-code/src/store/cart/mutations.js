@@ -21,6 +21,7 @@ export default {
   },
 
   removeProductFromCart(state, prodId) {
+    
     const productInCartIndex = state.cart.items.findIndex(
       (cartItem) => cartItem.productId === prodId
     );
@@ -28,5 +29,6 @@ export default {
     state.cart.items.splice(productInCartIndex, 1);
     state.cart.qty -= prodData.qty;
     state.cart.total -= prodData.price * prodData.qty;
+
   },
 };
