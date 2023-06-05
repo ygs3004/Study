@@ -1,32 +1,40 @@
 <template>
   <header>
     <h1>
-      <router-link to="/">VueShop</router-link>
+      <router-link to='/'>VueShop</router-link>
     </h1>
     <nav>
       <ul>
         <li>
-          <router-link to="/products">Products</router-link>
+          <router-link to='/products'>Products</router-link>
         </li>
         <li>
-          <router-link to="/cart">Cart</router-link>
-          <base-badge mode="elegant">{{ cart.qty }}</base-badge>
+          <router-link to='/cart'>Cart</router-link>
+          <base-badge mode='elegant'>{{ cart.qty }}</base-badge>
         </li>
-        <li v-if="isLoggedIn">
-          <router-link to="/admin">Admin</router-link>
+        <li v-if='isLoggedIn'>
+          <router-link to='/admin'>Admin</router-link>
         </li>
       </ul>
     </nav>
     <div>
-      <button v-if="!isLoggedIn" @click="login">Login</button>
-      <button v-if="isLoggedIn" @click="logout">Logout</button>
+      <button v-if='!isLoggedIn' @click='login'>Login</button>
+      <button v-if='isLoggedIn' @click='logout'>Logout</button>
     </div>
   </header>
 </template>
 
 <script>
+import { mapActions, mapGetters } from 'vuex';
+
 export default {
-  inject: ['isLoggedIn', 'login', 'logout', 'cart'],
+  computed: {
+    ...mapGetters(['isLoggedIn', 'cart'])
+  },
+  methods: {
+    ...mapActions(['login', 'logout'])
+  }
+
 };
 </script>
 

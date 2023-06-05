@@ -1,11 +1,11 @@
 <template>
   <li>
     <div>
-      <img :src="image" :alt="title" />
+      <img :src='image' :alt='title' />
     </div>
     <div>
       <h3>{{ title }}</h3>
-      <div class="item__data">
+      <div class='item__data'>
         <div>
           Price per Item:
           <strong>${{ price }}</strong>
@@ -15,15 +15,14 @@
           <strong>{{ qty }}</strong>
         </div>
       </div>
-      <div class="item__total">Total: ${{ itemTotal }}</div>
-      <button @click="remove">Remove</button>
+      <div class='item__total'>Total: ${{ itemTotal }}</div>
+      <button @click='remove'>Remove</button>
     </div>
   </li>
 </template>
 
 <script>
 export default {
-  inject: ['removeProductFromCart'],
   props: ['prodId', 'title', 'image', 'price', 'qty'],
   computed: {
     itemTotal() {
@@ -32,7 +31,7 @@ export default {
   },
   methods: {
     remove() {
-      this.removeProductFromCart(this.prodId);
+      this.$store.dispatch('removeProductFromCart', this.prodId);
     }
   }
 };
