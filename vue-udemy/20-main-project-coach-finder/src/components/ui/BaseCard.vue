@@ -4,8 +4,6 @@
   </div>
 </template>
 
-<script setup></script>
-
 <style scoped>
 .card {
   border-radius: 12px;
