@@ -30,7 +30,7 @@ export default {
       return `${this.$route.path}/${this.id}/contact`;
     },
     coachDetailsLink() {
-      return `${this.$route.path}/coaches/${this.id}`;
+      return `${this.$route.path}/${this.id}`;
     },
   },
 };
