@@ -34,7 +34,7 @@ export default {
 
   async loadCoaches(context) {
     const response = await fetch(
-      `https://coach-finder-91adb-default-rtdb.firebaseio.com/coaches.json`
+      `https://coach-finder-91adb-default-rtdb.firebaseio.com/coaches.jso`
     );
 
     const responseData = await response.json();
