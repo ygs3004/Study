@@ -63,7 +63,6 @@ export default {
       }
 
       this.isLoading = true;
-
       const actionPayload = {
         email: this.email,
         password: this.password,
