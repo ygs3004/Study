@@ -11,7 +11,7 @@
 </template>
 
 <script setup>
-import { computed, ref } from 'vue';
+import { computed, ref, watch } from 'vue';
 
 // const uName = ref('YGS');
 // const user = reactive({
@@ -22,6 +22,21 @@ const firstName = ref('');
 const lastName = ref('');
 const age = ref(20);
 
+// watch(age, (newValue, oldValue) => {
+//   console.log('Old age: ', oldValue);
+//   console.log('New age: ', newValue);
+// });
+
+const userName = computed(() => firstName.value + ' ' + lastName.value);
+
+watch([age, userName], (newValues, oldValues) => {
+  console.log('Old age: ', oldValues[0]);
+  console.log('New age: ', newValues[0]);
+
+  console.log('Old Name: ', oldValues[1]);
+  console.log('New Name: ', newValues[1]);
+});
+
 const setAge = () => {
   age.value = 32;
 };
@@ -31,8 +46,6 @@ const setAge = () => {
 //
 // const setLastName = (event) => {lastName.value = event.target.value;
 // };
-
-const userName = computed(() => firstName.value + ' ' + lastName.value);
 </script>
 
 <style>
