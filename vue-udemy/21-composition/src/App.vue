@@ -1,6 +1,11 @@
 <template>
   <section class="container">
-    <user-data :first-name="firstName" :last-name="lastName"></user-data>
+    <user-data
+      v-if="isShow"
+      :first-name="firstName"
+      :last-name="lastName"
+    ></user-data>
+    <button @click="toggleUserData">toggle UserData</button>
     <button @click="setAge">Change Age</button>
     <div>
       <input type="text" placeholder="First Name" v-model="firstName" />
@@ -21,6 +26,7 @@ export default {
     const lastName = ref('');
     const lastNameInput = ref(null);
     const age = ref(20);
+    const isShow = ref(true);
 
     provide('userAge', age);
 
@@ -41,6 +47,9 @@ export default {
     const setLastName = () => {
       lastName.value = lastNameInput.value.value;
     };
+    const toggleUserData = () => {
+      isShow.value = !isShow.value;
+    };
 
     return {
       userName,
@@ -50,6 +59,8 @@ export default {
       age,
       setAge,
       setLastName,
+      isShow,
+      toggleUserData,
     };
   },
 };
