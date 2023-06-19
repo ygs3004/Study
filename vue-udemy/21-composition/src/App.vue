@@ -1,7 +1,10 @@
 <template>
   <section class="container">
-    <h2>{{ userName }}</h2>
-    <h3>{{ age }}</h3>
+    <user-data
+      :age="age"
+      :first-name="firstName"
+      :last-name="lastName"
+    ></user-data>
     <button @click="setAge">Change Age</button>
     <div>
       <input type="text" placeholder="First Name" v-model="firstName" />
@@ -11,30 +14,46 @@
   </section>
 </template>
 
-<script setup>
+<script>
 import { computed, ref, watch } from 'vue';
+import UserData from '@/components/UserData.vue';
 
-const firstName = ref('');
-const lastName = ref('');
-const lastNameInput = ref(null);
-const age = ref(20);
+export default {
+  components: { UserData },
+  setup() {
+    const firstName = ref('');
+    const lastName = ref('');
+    const lastNameInput = ref(null);
+    const age = ref(20);
 
-const userName = computed(() => firstName.value + ' ' + lastName.value);
+    const userName = computed(() => firstName.value + ' ' + lastName.value);
 
-watch([age, userName], (newValues, oldValues) => {
-  console.log('Old age: ', oldValues[0]);
-  console.log('New age: ', newValues[0]);
+    watch([age, userName], (newValues, oldValues) => {
+      console.log('Old age: ', oldValues[0]);
+      console.log('New age: ', newValues[0]);
 
-  console.log('Old Name: ', oldValues[1]);
-  console.log('New Name: ', newValues[1]);
-});
+      console.log('Old Name: ', oldValues[1]);
+      console.log('New Name: ', newValues[1]);
+    });
 
-const setAge = () => {
-  age.value = 32;
-};
+    const setAge = () => {
+      age.value = 32;
+    };
 
-const setLastName = () => {
-  lastName.value = lastNameInput.value.value;
+    const setLastName = () => {
+      lastName.value = lastNameInput.value.value;
+    };
+
+    return {
+      userName,
+      firstName,
+      lastName,
+      lastNameInput,
+      age,
+      setAge,
+      setLastName,
+    };
+  },
 };
 </script>
 
