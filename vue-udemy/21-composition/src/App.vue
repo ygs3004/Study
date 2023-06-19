@@ -4,6 +4,7 @@
       :age="age"
       :first-name="firstName"
       :last-name="lastName"
+      class="a"
     ></user-data>
     <button @click="setAge">Change Age</button>
     <div>
