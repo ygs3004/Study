@@ -43,7 +43,7 @@ export default {
     } = useSearch(projects, 'title');
 
     watch(user, function () {
-      enteredSearchTerm.value = '';
+      updateSearch('');
     });
 
     // function updateSearch(val) {
@@ -51,7 +51,7 @@ export default {
     // }
 
     const hasProjects = computed(
-      () => props.user.projects && availableProjects.value.length > 0
+      () => user.value.projects && availableProjects.value.length > 0
     );
 
     return {
