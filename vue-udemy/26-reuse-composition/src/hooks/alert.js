@@ -1,11 +1,12 @@
 import { ref } from 'vue';
 
-const useAlert = () => {
-  const alertIsVisible = ref(false);
+const useAlert = (startingVisibility = false) => {
+  const alertIsVisible = ref(startingVisibility);
 
   function showAlert() {
     alertIsVisible.value = true;
   }
+
   function hideAlert() {
     alertIsVisible.value = false;
   }
@@ -13,8 +14,8 @@ const useAlert = () => {
   return {
     alertIsVisible,
     showAlert,
-    hideAlert
+    hideAlert,
   };
-}
+};
 
-export default useAlert
+export default useAlert;
