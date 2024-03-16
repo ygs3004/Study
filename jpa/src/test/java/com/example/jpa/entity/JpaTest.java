@@ -1,4 +1,4 @@
-package com.example.jpa;
+package com.example.jpa.entity;
 
 import com.example.jpa.model.entity.Member;
 import com.example.jpa.model.entity.Order;
@@ -7,6 +7,7 @@ import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
+import org.springframework.test.annotation.Commit;
 import org.springframework.transaction.annotation.Transactional;
 
 
@@ -23,13 +24,17 @@ public class JpaTest {
 
     @Test
     @Transactional
-    public void graphTest() {
+    @Commit
+    public void graphTest() throws Exception {
         Member member = new Member();
         Order order = new Order();
 
         member.getOrders().add(order);
         order.setMember(member);
         em.persist(order);
+        em.persist(member);
+        em.flush();
+        // throw new Exception();
     }
 
 }

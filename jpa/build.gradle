@@ -29,6 +29,8 @@ dependencies {
 	developmentOnly 'org.springframework.boot:spring-boot-devtools'
 	annotationProcessor 'org.projectlombok:lombok'
 	testImplementation 'org.springframework.boot:spring-boot-starter-test'
+	// https://mvnrepository.com/artifact/junit/junit
+	testImplementation 'junit:junit'
 
 	// Lombok Test
 	testCompileOnly 'org.projectlombok:lombok'
