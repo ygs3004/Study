@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html lang="ko" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, user-scalable=no, initial-scale=1.0
+  maximum-scale=1.0, minimum-scale=1.0">
+    <title>Title</title>
+    <style>
+        .container {
+            width: 100vw;
+            height: 100vh;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+        }
+
+        /* 테이블 헤더 스타일 */
+        table th {
+            border: 1px solid #dddddd;
+            padding: 8px;
+            text-align: center;
+            width: 250px
+        }
+
+        /* 테이블 셀 스타일 */
+        table td {
+            border: 1px solid #dddddd;
+            padding: 8px;
+            text-align: center;
+            width: 250px
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <div>
+            <table class="table table-striped">
+                <thead>
+                <tr>
+                    <th>id</th>
+                    <th>상품명</th>
+                    <th>가격</th>
+                    <th>재고수량</th>
+                    <th></th>
+                </tr>
+                </thead>
+                <tbody>
+                    <tr th:each="item: ${items}">
+                        <td>[[${item.id}]]</td>
+                        <td>[[${item.name}]]</td>
+                        <td>[[${item.price}]]</td>
+                        <td>[[${item.stockQuantity}]]</td>
+                        <td><a class="btn btn-primary" th:href="@{/items/{id}/edit(id = ${item.id})}">수정</a></td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+
+    </div>
+</body>
+</html>

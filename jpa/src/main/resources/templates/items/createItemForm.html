@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="ko" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, user-scalable=no, initial-scale=1.0
+  maximum-scale=1.0, minimum-scale=1.0">
+    <title>Title</title>
+    <style>
+        .container {
+            width: 100vw;
+            height: 100vh;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <form th:action="@{/items/new}" th:method="post">
+            <div>
+                <label>상품명</label>
+                <input type="text" name="name">
+            </div>
+
+            <div>
+                <label>수량</label>
+                <input type="number" name="stockQuantity">
+            </div>
+
+            <div>
+                <label>가격</label>
+                <input type="number" name="price">
+            </div>
+
+            <button type="submit">확인</button>
+        </form>
+    </div>
+</body>
+</html>
