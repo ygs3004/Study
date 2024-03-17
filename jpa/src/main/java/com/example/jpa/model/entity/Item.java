@@ -1,5 +1,6 @@
 package com.example.jpa.model.entity;
 
+import com.example.jpa.exception.NotEnoughStockException;
 import jakarta.persistence.*;
 import lombok.Getter;
 import lombok.Setter;
@@ -38,12 +39,6 @@ public class Item {
         }
 
         this.stockQuantity = restStock;
-    }
-
-    private static class NotEnoughStockException extends RuntimeException {
-        public NotEnoughStockException(String s) {
-            super(s);
-        }
     }
 
 }

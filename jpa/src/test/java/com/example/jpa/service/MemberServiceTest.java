@@ -2,13 +2,14 @@ package com.example.jpa.service;
 
 import com.example.jpa.model.entity.Member;
 import com.example.jpa.repository.MemberRepository;
-import com.example.jpa.service.MemberService;
-import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.transaction.annotation.Transactional;
+
+import static org.junit.jupiter.api.Assertions.assertEquals;
+import static org.junit.jupiter.api.Assertions.assertThrows;
 
 
 @SpringBootTest
@@ -33,7 +34,7 @@ public class MemberServiceTest {
         Long saveId = memberService.join(member);
 
         // Then
-        Assertions.assertEquals(member, memberRepository.findOne(saveId));
+        assertEquals(member, memberRepository.findOne(saveId));
     }
 
     @Test
@@ -51,7 +52,7 @@ public class MemberServiceTest {
         Long saveId = memberService.join(member1);
 
         // Then
-        Assertions.assertThrows(IllegalStateException.class, () -> {
+        assertThrows(IllegalStateException.class, () -> {
             memberService.join(member2);
         });
 
