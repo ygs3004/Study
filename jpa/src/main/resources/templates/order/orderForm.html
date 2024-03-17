@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="ko" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, user-scalable=no, initial-scale=1.0
+  maximum-scale=1.0, minimum-scale=1.0">
+    <title>Title</title>
+    <style>
+        .container {
+            width: 100vw;
+            height: 100vh;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <form th:action="@{/order}" th:method="post">
+            <div>
+                <label>주문회원(식별자ID)</label>
+                <input type="number" name="memberId">
+            </div>
+
+            <div>
+                <label>상품명(식별자ID)</label>
+                <input type="number" name="itemId">
+            </div>
+
+            <div>
+                <label>주문수량</label>
+                <input type="number" name="count">
+            </div>
+
+            <button type="submit">확인</button>
+        </form>
+    </div>
+</body>
+</html>
