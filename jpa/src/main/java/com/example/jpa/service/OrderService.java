@@ -21,7 +21,7 @@ public class OrderService {
 
     /* 주문 신청 */
     public Long order(Long memberId, Long itemId, int count) {
-        Member member = memberRepository.findOne(memberId);
+        Member member = memberRepository.getReferenceById(memberId);
         Item item = itemService.findOne(itemId);
 
         Delivery delivery
@@ -37,13 +37,13 @@ public class OrderService {
 
     /* 주문 취소 */
     public void cancelOrder(Long orderId) {
-        Order order = orderRepository.findOne(orderId);
+        Order order = orderRepository.getReferenceById(orderId);
         order.cancel();
     }
 
     /* 주문 검색 */
     public List<Order> findOrders(OrderSearch orderSearch) {
-        return orderRepository.findAll(orderSearch);
+        return orderRepository.findAll(orderSearch.toSpecification());
     }
 
 }

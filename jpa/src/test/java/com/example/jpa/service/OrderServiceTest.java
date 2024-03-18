@@ -6,7 +6,6 @@ import com.example.jpa.model.enums.OrderStatus;
 import com.example.jpa.repository.OrderRepository;
 import jakarta.persistence.EntityManager;
 import jakarta.persistence.PersistenceContext;
-import org.h2.command.dml.MergeUsing;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -41,7 +40,7 @@ public class OrderServiceTest {
         Long orderId = orderService.order(member.getId(), item.getId(), orderCount);
 
         // Then
-        Order getOrder = orderRepository.findOne(orderId);
+        Order getOrder = orderRepository.getReferenceById(orderId);
 
         assertEquals(OrderStatus.ORDER, getOrder.getStatus(), "상품 주문시 최초상태 OrderStatus.ORDER");
         assertEquals(1, getOrder.getOrderItems().size(), "상품 종류의 숫자 체크");
@@ -74,7 +73,7 @@ public class OrderServiceTest {
         orderService.cancelOrder(orderId);
 
         // Then
-        Order getOrder = orderRepository.findOne(orderId);
+        Order getOrder = orderRepository.getReferenceById(orderId);
 
         assertEquals(OrderStatus.CANCEL, getOrder.getStatus(), "주문 취소시 상태는 취소로 변경되어야 한다.");
         assertEquals(10, item.getStockQuantity(), " 주문이 취소된 상품은 취소량 만큼 재고가 증가해야한다.");
