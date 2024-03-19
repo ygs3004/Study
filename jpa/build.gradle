@@ -32,6 +32,13 @@ dependencies {
 	// https://mvnrepository.com/artifact/junit/junit
 	testImplementation 'junit:junit'
 
+	// querydsl
+	// Spring boot 3.x이상에서 QueryDsl 패키지를 정의하는 방법
+	implementation 'com.querydsl:querydsl-jpa:5.0.0:jakarta'
+	annotationProcessor 'com.querydsl:querydsl-apt:5.0.0:jakarta' // querydsl JPAAnnotationProcessor 사용 지정
+	annotationProcessor 'jakarta.persistence:jakarta.persistence-api' // java.lang.NoClassDefFoundError(javax.annotation.Entity) 발생 대응
+	// annotationProcessor 'jakarta.annotation:jakarta.annotation-api' // java.lang.NoClassDefFoundError (javax.annotation.Generated) 발생 대응
+
 	// Lombok Test
 	testCompileOnly 'org.projectlombok:lombok'
 	testAnnotationProcessor 'org.projectlombok:lombok'
